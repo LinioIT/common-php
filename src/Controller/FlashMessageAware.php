@@ -14,14 +14,14 @@ trait FlashMessageAware
     /**
      * Adds a flash message to the current session for type.
      *
-     * @param string $type    The type
-     * @param string $message The message
+     * @param string $severity ['success', 'notice', 'warning', 'error']
+     * @param string $message
      *
      * @return void
      */
-    protected function addFlash($type, $message)
+    protected function addFlash($severity, $message)
     {
-        $this->session->getFlashBag()->add($type, $message);
+        $this->session->getFlashBag()->add($severity, $message);
     }
 
     /**
