@@ -5,6 +5,7 @@ namespace Linio\Controller;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormTypeInterface;
 
 trait FormAware
 {
