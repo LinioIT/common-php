@@ -20,7 +20,7 @@ class JsonRequestTransformerListener
     {
         $request = $event->getRequest();
 
-        if (!$this->isJsonRequest($request)) {
+        if ($request->getContentType() !== 'json') {
             return;
         }
 
@@ -30,16 +30,6 @@ class JsonRequestTransformerListener
             $response = Response::create($e->getMessage(), Response::HTTP_BAD_REQUEST);
             $event->setResponse($response);
         }
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return bool
-     */
-    protected function isJsonRequest(Request $request)
-    {
-        return 'json' === $request->getContentType();
     }
 
     /**
