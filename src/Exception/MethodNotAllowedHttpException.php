@@ -4,7 +4,7 @@ namespace Linio\Exception;
 
 use Psr\Log\LogLevel;
 
-class AccessDeniedHttpException extends HttpException
+class MethodNotAllowedHttpException extends HttpException
 {
     /**
      * @param string $message Error message
@@ -14,6 +14,6 @@ class AccessDeniedHttpException extends HttpException
      */
     public function __construct($message, $code = 0, $logLevel = LogLevel::WARNING, $detail = null)
     {
-        parent::__construct($message, 403, $code, $logLevel, $detail);
+        parent::__construct($message, 405, $code, $logLevel, $detail);
     }
 }

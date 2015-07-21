@@ -38,7 +38,7 @@ class HttpException extends ErrorException implements HttpExceptionInterface
      * @param string $detail Optional further details on the error
      * @param array $headers Optional header response information
      */
-    public function __construct($message, $statusCode, $code, $logLevel = LogLevel::WARNING, $detail = null, array $headers = array())
+    public function __construct($message, $statusCode, $code = 0, $logLevel = LogLevel::WARNING, $detail = null, array $headers = array())
     {
         $this->statusCode = $statusCode;
         $this->headers = $headers;

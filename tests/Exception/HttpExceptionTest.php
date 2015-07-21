@@ -15,11 +15,13 @@ class HttpExceptionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('#42', $apiProblem->getType());
         $this->assertEquals('foobaz', $apiProblem->getDetail());
         $this->assertEquals(500, $apiProblem->getStatus());
+        $this->assertEquals(LogLevel::WARNING, $exception->getLogLevel());
     }
 
     public function testIsCreatingHeaders()
     {
         $exception = new HttpException('foobar', 500, 42, LogLevel::WARNING, 'foobaz', ['Content-Type' => 'application/json']);
         $this->assertEquals(['Content-Type' => 'application/json'], $exception->getHeaders());
+        $this->assertEquals(LogLevel::WARNING, $exception->getLogLevel());
     }
 }
