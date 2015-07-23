@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "353815e4e3e83751287a138c876a17ca",
+    "hash": "e7a52fe289b9ecd63bc01394b761f997",
     "packages": [
         {
             "name": "crell/api-problem",
@@ -169,6 +169,43 @@
                 "fixtures"
             ],
             "time": "2014-06-04 14:43:02"
+        },
+        {
+            "name": "linio/util",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LinioIT/util.git",
+                "reference": "7e042a445f4ee3b5fffdd3ab5e650ea11c98bf53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LinioIT/util/zipball/7e042a445f4ee3b5fffdd3ab5e650ea11c98bf53",
+                "reference": "7e042a445f4ee3b5fffdd3ab5e650ea11c98bf53",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Linio\\Component\\Util\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Generic component that provides many helper classes, such as JSON parsing, conversion tools, data structures, etc.",
+            "keywords": [
+                "linio",
+                "util"
+            ],
+            "time": "2015-03-16 20:03:14"
         },
         {
             "name": "nelmio/alice",
@@ -2991,7 +3028,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "linio/util": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

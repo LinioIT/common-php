@@ -10,7 +10,8 @@
         "symfony/http-foundation": "~2.6",
         "symfony/http-kernel": "~2.6",
         "crell/api-problem": "~1.7",
-        "doctrine/collections": "~1.2"
+        "doctrine/collections": "~1.2",
+        "linio/util": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.5",
