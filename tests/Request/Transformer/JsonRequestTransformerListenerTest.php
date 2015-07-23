@@ -4,6 +4,7 @@ namespace Linio\Request\Transformer\Tests;
 
 use Prophecy\Argument;
 use Linio\Request\Transformer\JsonRequestTransformerListener;
+use Symfony\Component\HttpFoundation\Response;
 
 class JsonRequestTransformerListenerTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,6 +15,7 @@ class JsonRequestTransformerListenerTest extends \PHPUnit_Framework_TestCase
         $requestAttributeMock = $this->prophesize('Symfony\Component\HttpFoundation\ParameterBag');
 
         $content = '{"customerAddress":{"firstName":"FirstName", "lastName":"LastName"}}';
+
         $decodedContent = [
             'customerAddress' => [
                 'firstName' => 'FirstName',
@@ -47,7 +49,7 @@ class JsonRequestTransformerListenerTest extends \PHPUnit_Framework_TestCase
         $responseEventMock = $this->prophesize('Symfony\Component\HttpKernel\Event\GetResponseEvent');
         $requestMock = $this->prophesize('Symfony\Component\HttpFoundation\Request');
 
-        $content = '{"customerAddress":"firstName":"FirstName", "lastName":"LastName"}}';
+        $content = '{"customerAddress":"firstName":"FirstName" "lastName":"LastName"}}';
 
         $requestMock->getContentType()
             ->shouldBeCalled()

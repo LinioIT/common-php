@@ -5,6 +5,7 @@ namespace Linio\Request\Transformer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Linio\Component\Util\Json;
 use Linio\Request\Transformer\Exception\JsonRequestTransformerException;
 
 /**
@@ -26,7 +27,7 @@ class JsonRequestTransformerListener
 
         try {
             $this->transformJsonBody($request);
-        } catch (JsonRequestTransformerException $e) {
+        } catch (\LogicException $e) {
             $response = Response::create($e->getMessage(), Response::HTTP_BAD_REQUEST);
             $event->setResponse($response);
         }
@@ -38,17 +39,7 @@ class JsonRequestTransformerListener
      */
     protected function transformJsonBody(Request $request)
     {
-        $data = json_decode($request->getContent(), true);
-
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            $message = 'Malformed input data';
-
-            if (function_exists('json_last_error_msg')) {
-                $message = json_last_error_msg();
-            }
-
-            throw new JsonRequestTransformerException($message);
-        }
+        $data = Json::decode($request->getContent());
 
         $request->request->replace($data);
     }
