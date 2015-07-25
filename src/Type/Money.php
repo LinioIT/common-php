@@ -5,14 +5,14 @@ namespace Linio\Type;
 class Money
 {
     /**
-     * Money amount in cents
+     * Money amount in cents.
      *
      * @var int
      */
     protected $amount = 0;
 
     /**
-     * Number of digits after the decimal place
+     * Number of digits after the decimal place.
      *
      * @var int
      */
@@ -20,6 +20,7 @@ class Money
 
     /**
      * @param mixed $amount Money amount
+     *
      * @throws \InvalidArgumentException
      *
      * @return Money
@@ -35,6 +36,7 @@ class Money
 
     /**
      * @param int $cents Money amount in cents
+     *
      * @throws InvalidArgumentException
      *
      * @return Money
@@ -45,7 +47,7 @@ class Money
             throw new \InvalidArgumentException('Amount should be a numeric value');
         }
 
-        $money = new Money();
+        $money = new self();
         $money->setAmount($cents);
 
         return $money;
@@ -60,7 +62,7 @@ class Money
     {
         $result = $this->amount + $operand->getAmount();
 
-        return Money::fromCents($result);
+        return self::fromCents($result);
     }
 
     /**
@@ -72,7 +74,7 @@ class Money
     {
         $result = $this->amount - $operand->getAmount();
 
-        return Money::fromCents($result);
+        return self::fromCents($result);
     }
 
     /**
@@ -84,7 +86,7 @@ class Money
     {
         $result = $this->amount * $multiplier;
 
-        return Money::fromCents($result);
+        return self::fromCents($result);
     }
 
     /**
@@ -96,7 +98,7 @@ class Money
     {
         $result = $this->amount / $divisor;
 
-        return Money::fromCents($result);
+        return self::fromCents($result);
     }
 
     /**
@@ -109,7 +111,7 @@ class Money
         $percentage = $percentage / 100;
         $result = $this->amount * $percentage;
 
-        return Money::fromCents($result);
+        return self::fromCents($result);
     }
 
     /**
@@ -126,7 +128,8 @@ class Money
 
     /**
      * @param float $rate
-     * @param int $duration
+     * @param int   $duration
+     *
      * @return Money
      */
     public function getInterest($rate, $duration)
@@ -134,12 +137,13 @@ class Money
         $interest = $rate / 100;
         $result = ($this->amount * $duration) * $interest;
 
-        return Money::fromCents($result);
+        return self::fromCents($result);
     }
 
     /**
      * @param float $rate
-     * @param int $duration
+     * @param int   $duration
+     *
      * @return Money
      */
     public function applyInterest($rate, $duration)
@@ -151,11 +155,12 @@ class Money
 
     /**
      * @param mixed $other
-     * @return boolean
+     *
+     * @return bool
      */
     public function equals($other)
     {
-        if (!($other instanceof Money)) {
+        if (!($other instanceof self)) {
             return false;
         }
 
@@ -164,7 +169,8 @@ class Money
 
     /**
      * @param Money $other
-     * @return boolean
+     *
+     * @return bool
      */
     public function greaterThan(Money $other)
     {
@@ -173,7 +179,8 @@ class Money
 
     /**
      * @param Money $other
-     * @return boolean
+     *
+     * @return bool
      */
     public function lessThan(Money $other)
     {
@@ -181,7 +188,7 @@ class Money
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isZero()
     {
@@ -189,7 +196,7 @@ class Money
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPositive()
     {
@@ -197,7 +204,7 @@ class Money
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isNegative()
     {

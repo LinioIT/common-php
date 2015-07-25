@@ -8,7 +8,9 @@ class PreciseMoney extends Money
 
     /**
      * @param mixed $amount
+     *
      * @return Money
+     *
      * @throws \InvalidArgumentException
      */
     public function __construct($amount = 0)
@@ -22,6 +24,7 @@ class PreciseMoney extends Money
 
     /**
      * @param Money $operand
+     *
      * @return Money
      */
     public function add(Money $operand)
@@ -33,6 +36,7 @@ class PreciseMoney extends Money
 
     /**
      * @param Money $operand
+     *
      * @return Money
      */
     public function subtract(Money $operand)
@@ -44,6 +48,7 @@ class PreciseMoney extends Money
 
     /**
      * @param float $multiplier
+     *
      * @return Money
      */
     public function multiply($multiplier)
@@ -55,6 +60,7 @@ class PreciseMoney extends Money
 
     /**
      * @param float $divisor
+     *
      * @return Money
      */
     public function divide($divisor)
@@ -66,6 +72,7 @@ class PreciseMoney extends Money
 
     /**
      * @param float $percentage
+     *
      * @return Money
      */
     public function getPercentage($percentage)
@@ -78,6 +85,7 @@ class PreciseMoney extends Money
 
     /**
      * @param float $percentage
+     *
      * @return Money
      */
     public function applyPercentage($percentage)
@@ -89,7 +97,8 @@ class PreciseMoney extends Money
 
     /**
      * @param float $rate
-     * @param int $duration
+     * @param int   $duration
+     *
      * @return Money
      */
     public function getInterest($rate, $duration)
@@ -110,7 +119,8 @@ class PreciseMoney extends Money
 
     /**
      * @param float $rate
-     * @param int $duration
+     * @param int   $duration
+     *
      * @return Money
      */
     public function applyInterest($rate, $duration)
@@ -122,7 +132,8 @@ class PreciseMoney extends Money
 
     /**
      * @param mixed $other Object
-     * @return boolean
+     *
+     * @return bool
      */
     public function equals($other)
     {
@@ -135,7 +146,8 @@ class PreciseMoney extends Money
 
     /**
      * @param Money $other
-     * @return boolean
+     *
+     * @return bool
      */
     public function greaterThan(Money $other)
     {
@@ -144,7 +156,8 @@ class PreciseMoney extends Money
 
     /**
      * @param Money $other
-     * @return boolean
+     *
+     * @return bool
      */
     public function lessThan(Money $other)
     {

@@ -9,7 +9,7 @@ abstract class TypedCollection extends ArrayCollection
     /**
      * {@inheritdoc}
      */
-    public function __construct(array $elements = array())
+    public function __construct(array $elements = [])
     {
         foreach ($elements as $value) {
             $this->validateType($value);
@@ -38,6 +38,7 @@ abstract class TypedCollection extends ArrayCollection
 
     /**
      * @param mixed $value
+     *
      * @throws InvalidArgumentException
      */
     protected function validateType($value)
@@ -50,7 +51,8 @@ abstract class TypedCollection extends ArrayCollection
 
     /**
      * @param mixed $value
-     * @return boolean
+     *
+     * @return bool
      */
     abstract public function isValidType($value);
 }

@@ -48,7 +48,7 @@ class Dictionary implements \JsonSerializable, \Countable
     /**
      * @param string $key
      *
-     * @return boolean
+     * @return bool
      */
     public function has($key)
     {
@@ -58,7 +58,7 @@ class Dictionary implements \JsonSerializable, \Countable
     /**
      * @param string $value
      *
-     * @return boolean
+     * @return bool
      */
     public function contains($value)
     {
@@ -82,7 +82,7 @@ class Dictionary implements \JsonSerializable, \Countable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isEmpty()
     {

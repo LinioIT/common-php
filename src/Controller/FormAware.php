@@ -2,9 +2,9 @@
 
 namespace Linio\Controller;
 
-use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormTypeInterface;
 
 trait FormAware
@@ -33,9 +33,9 @@ trait FormAware
     /**
      * Creates and returns a Form instance from the type of the form.
      *
-     * @param string|FormTypeInterface $type The built type of the form
-     * @param mixed $data The initial data for the form
-     * @param array $options Options for the form
+     * @param string|FormTypeInterface $type    The built type of the form
+     * @param mixed                    $data    The initial data for the form
+     * @param array                    $options Options for the form
      *
      * @return Form
      */
@@ -45,9 +45,9 @@ trait FormAware
     }
 
     /**
-     * Creates and returns a form builder instance
+     * Creates and returns a form builder instance.
      *
-     * @param mixed $data The initial data for the form
+     * @param mixed $data    The initial data for the form
      * @param array $options Options for the form
      *
      * @return FormBuilder

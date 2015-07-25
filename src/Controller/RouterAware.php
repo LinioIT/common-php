@@ -3,8 +3,8 @@
 namespace Linio\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 trait RouterAware
 {
@@ -32,8 +32,8 @@ trait RouterAware
     /**
      * Generates a URL from the given parameters.
      *
-     * @param string $route The name of the route
-     * @param mixed $parameters An array of parameters
+     * @param string      $route         The name of the route
+     * @param mixed       $parameters    An array of parameters
      * @param bool|string $referenceType The type of reference (one of the constants in UrlGeneratorInterface)
      *
      * @return string The generated URL

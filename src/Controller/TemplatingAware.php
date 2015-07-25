@@ -2,9 +2,9 @@
 
 namespace Linio\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 trait TemplatingAware
 {
@@ -32,8 +32,8 @@ trait TemplatingAware
     /**
      * Returns a rendered view.
      *
-     * @param string $view The view name
-     * @param array $parameters An array of parameters to pass to the view
+     * @param string $view       The view name
+     * @param array  $parameters An array of parameters to pass to the view
      *
      * @return string The rendered view
      */
@@ -45,9 +45,9 @@ trait TemplatingAware
     /**
      * Renders a view.
      *
-     * @param string $view The view name
-     * @param array $parameters An array of parameters to pass to the view
-     * @param Response $response A response instance
+     * @param string   $view       The view name
+     * @param array    $parameters An array of parameters to pass to the view
+     * @param Response $response   A response instance
      *
      * @return Response A Response instance
      */
@@ -59,9 +59,9 @@ trait TemplatingAware
     /**
      * Streams a view.
      *
-     * @param string $view The view name
-     * @param array $parameters An array of parameters to pass to the view
-     * @param StreamedResponse $response A response instance
+     * @param string           $view       The view name
+     * @param array            $parameters An array of parameters to pass to the view
+     * @param StreamedResponse $response   A response instance
      *
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      *
