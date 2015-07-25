@@ -8,7 +8,7 @@ abstract class RestController
 {
     /**
      * @param string $message
-     * @param integer $status
+     * @param int    $status
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */

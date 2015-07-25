@@ -4,10 +4,10 @@ namespace Linio\Type;
 
 class Time extends \DateTime
 {
-	/**
-	 * @param string $time
-	 * @param \DateTimeZone $timezone
-	 */
+    /**
+     * @param string        $time
+     * @param \DateTimeZone $timezone
+     */
     public function __construct($time = 'now', DateTimeZone $timezone = null)
     {
         parent::__construct($time, $timezone);
@@ -21,6 +21,6 @@ class Time extends \DateTime
      */
     public static function createFromDateTime(\DateTime $dateTime)
     {
-    	return new self($dateTime->format('H:i:s'));
+        return new self($dateTime->format('H:i:s'));
     }
 }

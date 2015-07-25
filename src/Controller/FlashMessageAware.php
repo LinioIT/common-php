@@ -16,8 +16,6 @@ trait FlashMessageAware
      *
      * @param string $severity ['success', 'notice', 'warning', 'error']
      * @param string $message
-     *
-     * @return void
      */
     protected function addFlash($severity, $message)
     {

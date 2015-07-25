@@ -12,8 +12,8 @@ class ErrorException extends \RuntimeException
     protected $logLevel;
 
     /**
-     * @param string $message Error message
-     * @param int $code Internal code for the application error
+     * @param string $message  Error message
+     * @param int    $code     Internal code for the application error
      * @param string $logLevel Log level of the error, from Psr\Log\LogLevel
      */
     public function __construct($message, $code, $logLevel = LogLevel::ERROR)

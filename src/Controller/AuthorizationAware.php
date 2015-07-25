@@ -36,6 +36,7 @@ trait AuthorizationAware
      * @param mixed $object     The object
      *
      * @throws LogicException
+     *
      * @return bool
      */
     protected function isGranted($attributes, $object = null)

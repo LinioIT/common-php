@@ -2,9 +2,9 @@
 
 namespace Linio\Exception;
 
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Crell\ApiProblem\ApiProblem;
 use Psr\Log\LogLevel;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 /**
  * HttpException aims to make it easier to handle public-facing
@@ -31,14 +31,14 @@ class HttpException extends ErrorException implements HttpExceptionInterface
     protected $apiProblem;
 
     /**
-     * @param string $message Error message
-     * @param int $statusCode HTTP status code
-     * @param int $code Internal code for the application error
-     * @param string $logLevel Log level of the error, from Psr\Log\LogLevel
-     * @param string $detail Optional further details on the error
-     * @param array $headers Optional header response information
+     * @param string $message    Error message
+     * @param int    $statusCode HTTP status code
+     * @param int    $code       Internal code for the application error
+     * @param string $logLevel   Log level of the error, from Psr\Log\LogLevel
+     * @param string $detail     Optional further details on the error
+     * @param array  $headers    Optional header response information
      */
-    public function __construct($message, $statusCode, $code = 0, $logLevel = LogLevel::WARNING, $detail = null, array $headers = array())
+    public function __construct($message, $statusCode, $code = 0, $logLevel = LogLevel::WARNING, $detail = null, array $headers = [])
     {
         $this->statusCode = $statusCode;
         $this->headers = $headers;

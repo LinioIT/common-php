@@ -13,7 +13,7 @@ abstract class FixedTypedCollection extends TypedCollection
     protected $size;
 
     /**
-     * @param int $size
+     * @param int   $size
      * @param array $elements
      */
     public function __construct($size, array $elements = [])
@@ -84,12 +84,12 @@ abstract class FixedTypedCollection extends TypedCollection
      */
     public function matching(Criteria $criteria)
     {
-        $expr     = $criteria->getWhereExpression();
+        $expr = $criteria->getWhereExpression();
         $filtered = $this->toArray();
 
         if ($expr) {
-            $visitor  = new ClosureExpressionVisitor();
-            $filter   = $visitor->dispatch($expr);
+            $visitor = new ClosureExpressionVisitor();
+            $filter = $visitor->dispatch($expr);
             $filtered = array_filter($filtered, $filter);
         }
 
@@ -106,7 +106,7 @@ abstract class FixedTypedCollection extends TypedCollection
         $length = $criteria->getMaxResults();
 
         if ($offset || $length) {
-            $filtered = array_slice($filtered, (int)$offset, $length);
+            $filtered = array_slice($filtered, (int) $offset, $length);
         }
 
         return new static(count($filtered), $filtered);
