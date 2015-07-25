@@ -156,6 +156,35 @@ class FooController extends RestController
 }
 ```
 
+RequestTransformer
+------------------
+
+This component allows you to transform an `application/json` request data (like the `$http` Angular.js service) into
+an `application/x-www-form-url` request data in your Symfony2 applications.
+
+### Usage
+
+Register the listener:
+
+
+```yaml
+    kernel.event_listener.json_request_transformer:
+        class: Linio\Request\Transformer\JsonRequestTransformerListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 100 }
+```
+
+Then you will be able to get the json data in your controller:
+
+```php
+<?php
+
+public function postAction(Request $request)
+{
+    echo $request->request->get('foo', 'bar');
+}
+```
+
 Service Traits
 --------------
 
