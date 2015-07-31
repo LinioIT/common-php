@@ -7,3 +7,4 @@ phpunit.xml
 cache.properties
 coverage.xml
 .php_cs.cache
+composer.lock
