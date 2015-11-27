@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace Linio\Type;
 
 class Address
@@ -34,106 +36,67 @@ class Address
      */
     protected $country;
 
-    /**
-     * @return string
-     */
-    public function getLine1()
+    public function getLine1(): string
     {
         return $this->line1;
     }
 
-    /**
-     * @param string $line1
-     */
-    public function setLine1($line1)
+    public function setLine1(string $line1)
     {
         $this->line1 = $line1;
     }
 
-    /**
-     * @return string
-     */
-    public function getLine2()
+    public function getLine2(): string
     {
         return $this->line2;
     }
 
-    /**
-     * @param string $line2
-     */
-    public function setLine2($line2)
+    public function setLine2(string $line2)
     {
         $this->line2 = $line2;
     }
 
-    /**
-     * @return string
-     */
-    public function getFullAddress()
+    public function getFullAddress(): string
     {
         return $this->line1 . ' ' . $this->line2;
     }
 
-    /**
-     * @return string
-     */
-    public function getPostcode()
+    public function getPostcode(): string
     {
         return $this->postcode;
     }
 
-    /**
-     * @param string $postcode
-     */
-    public function setPostcode($postcode)
+    public function setPostcode(string $postcode)
     {
         $this->postcode = $postcode;
     }
 
-    /**
-     * @return string
-     */
-    public function getCity()
+    public function getCity(): string
     {
         return $this->city;
     }
 
-    /**
-     * @param string $city
-     */
-    public function setCity($city)
+    public function setCity(string $city)
     {
         $this->city = $city;
     }
 
-    /**
-     * @return string
-     */
-    public function getState()
+    public function getState(): string
     {
         return $this->state;
     }
 
-    /**
-     * @param string $state
-     */
-    public function setState($state)
+    public function setState(string $state)
     {
         $this->state = $state;
     }
 
-    /**
-     * @return string
-     */
-    public function getCountry()
+    public function getCountry(): string
     {
         return $this->country;
     }
 
-    /**
-     * @param string $country
-     */
-    public function setCountry($country)
+    public function setCountry(string $country)
     {
         $this->country = $country;
     }

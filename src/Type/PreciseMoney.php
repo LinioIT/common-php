@@ -1,176 +1,117 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace Linio\Type;
 
 class PreciseMoney extends Money
 {
     const CALCULATION_SCALE = 10;
 
-    /**
-     * @param mixed $amount
-     *
-     * @return Money
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function __construct($amount = 0)
+    public function __construct(float $amount = 0)
     {
-        if (!is_numeric($amount)) {
-            throw new \InvalidArgumentException('Amount should be a numeric value');
-        }
-
-        $this->amount = bcmul($amount, 100, self::CALCULATION_SCALE);
+        $this->amount = bcmul((string) $amount, '100', self::CALCULATION_SCALE);
     }
 
-    /**
-     * @param Money $operand
-     *
-     * @return Money
-     */
-    public function add(Money $operand)
+    public function add(Money $operand): Money
     {
-        $result = bcadd($this->amount, $operand->getAmount(), self::CALCULATION_SCALE);
+        $result = bcadd($this->amount, (string) $operand->getAmount(), self::CALCULATION_SCALE);
 
-        return Money::fromCents($result);
+        return Money::fromCents((float) $result);
     }
 
-    /**
-     * @param Money $operand
-     *
-     * @return Money
-     */
-    public function subtract(Money $operand)
+    public function subtract(Money $operand): Money
     {
-        $result = bcsub($this->amount, $operand->getAmount(), self::CALCULATION_SCALE);
+        $result = bcsub($this->amount, (string) $operand->getAmount(), self::CALCULATION_SCALE);
 
-        return Money::fromCents($result);
+        return Money::fromCents((float) $result);
     }
 
-    /**
-     * @param float $multiplier
-     *
-     * @return Money
-     */
-    public function multiply($multiplier)
+    public function multiply(float $multiplier): Money
     {
-        $result = bcmul($this->amount, $multiplier, self::CALCULATION_SCALE);
+        $result = bcmul($this->amount, (string) $multiplier, self::CALCULATION_SCALE);
 
-        return Money::fromCents($result);
+        return Money::fromCents((float) $result);
     }
 
-    /**
-     * @param float $divisor
-     *
-     * @return Money
-     */
-    public function divide($divisor)
+    public function divide(float $divisor): Money
     {
-        $result = bcdiv($this->amount, $divisor, self::CALCULATION_SCALE);
+        $result = bcdiv($this->amount, (string) $divisor, self::CALCULATION_SCALE);
 
-        return Money::fromCents($result);
+        return Money::fromCents((float) $result);
     }
 
-    /**
-     * @param float $percentage
-     *
-     * @return Money
-     */
-    public function getPercentage($percentage)
+    public function getPercentage(float $percentage): Money
     {
-        $percentage = bcdiv($percentage, 100, self::CALCULATION_SCALE);
-        $result = bcmul($this->amount, $percentage, self::CALCULATION_SCALE);
+        $percentage = bcdiv((string) $percentage, '100', self::CALCULATION_SCALE);
+        $result = bcmul($this->amount, (string) $percentage, self::CALCULATION_SCALE);
 
-        return Money::fromCents($result);
+        return Money::fromCents((float) $result);
     }
 
-    /**
-     * @param float $percentage
-     *
-     * @return Money
-     */
-    public function applyPercentage($percentage)
+    public function applyPercentage(float $percentage): Money
     {
         $percentage = $this->getPercentage($percentage);
 
         return $this->add($percentage);
     }
 
-    /**
-     * @param float $rate
-     * @param int   $duration
-     *
-     * @return Money
-     */
-    public function getInterest($rate, $duration)
+    public function getInterest(float $rate, int $duration): Money
     {
-        $interest = bcdiv($rate, 100, self::CALCULATION_SCALE);
+        $interest = bcdiv((string) $rate, '100', self::CALCULATION_SCALE);
         $result = bcmul(
             bcmul(
                 $this->amount,
-                $duration,
+                (string) $duration,
                 self::CALCULATION_SCALE
             ),
-            $interest,
+            (string) $interest,
             self::CALCULATION_SCALE
         );
 
-        return Money::fromCents($result);
+        return Money::fromCents((float) $result);
     }
 
-    /**
-     * @param float $rate
-     * @param int   $duration
-     *
-     * @return Money
-     */
-    public function applyInterest($rate, $duration)
+    public function applyInterest(float $rate, int $duration): Money
     {
         $interest = $this->getInterest($rate, $duration);
 
         return $this->add($interest);
     }
 
-    /**
-     * @param mixed $other Object
-     *
-     * @return bool
-     */
-    public function equals($other)
+    public function equals($other): bool
     {
         if (!($other instanceof Money)) {
             return false;
         }
 
-        return (bccomp($this->amount, $other->getAmount()) === 0);
+        return (bccomp((string) $this->amount, (string) $other->getAmount()) === 0);
     }
 
-    /**
-     * @param Money $other
-     *
-     * @return bool
-     */
-    public function greaterThan(Money $other)
+    public function greaterThan(Money $other): bool
     {
-        return (bccomp($this->amount, $other->getAmount()) === 1);
+        return (bccomp((string) $this->amount, (string) $other->getAmount()) === 1);
     }
 
-    /**
-     * @param Money $other
-     *
-     * @return bool
-     */
-    public function lessThan(Money $other)
+    public function lessThan(Money $other): bool
     {
-        return (bccomp($this->amount, $other->getAmount()) === -1);
+        return (bccomp((string) $this->amount, (string) $other->getAmount()) === -1);
     }
 
-    /**
-     * @return float
-     */
-    public function getMoneyAmount()
+    public function getMoneyAmount(): float
     {
-        $money = bcdiv($this->amount, 100, self::CALCULATION_SCALE);
+        $money = bcdiv($this->amount, '100', self::CALCULATION_SCALE);
 
         return round($money, $this->scale);
+    }
+
+    public function getAmount(): float
+    {
+        return (float) $this->amount;
+    }
+
+    public function setAmount(float $amount)
+    {
+        $this->amount = (string) $amount;
     }
 }

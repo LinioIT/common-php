@@ -2,6 +2,8 @@
 
 namespace Linio\Test;
 
+use Nelmio\Alice\Fixtures\Loader;
+
 abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -11,7 +13,7 @@ abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
 
     public function loadFixtures($file)
     {
-        $loader = new \Nelmio\Alice\Loader\Yaml();
+        $loader = new Loader();
         $this->fixtures = $loader->load($file);
     }
 
@@ -21,12 +23,9 @@ abstract class UnitTestCase extends \PHPUnit_Framework_TestCase
     }
 }
 
-// @codingStandardsIgnoreStart
 class PDOMock extends \PDO
 {
     public function __construct()
     {
     }
 }
-// @codingStandardsIgnoreEnd
-

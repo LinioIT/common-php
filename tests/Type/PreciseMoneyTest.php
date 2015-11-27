@@ -49,7 +49,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException TypeError
      */
     public function testIsNotCreatingMoneyWithString()
     {
