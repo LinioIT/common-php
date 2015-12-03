@@ -49,7 +49,7 @@ class MoneyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException TypeError
      */
     public function testIsNotCreatingMoneyWithString()
     {

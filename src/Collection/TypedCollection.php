@@ -19,7 +19,7 @@ abstract class TypedCollection extends ArrayCollection
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function offsetSet($offset, $value)
     {
@@ -28,7 +28,7 @@ abstract class TypedCollection extends ArrayCollection
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function add($value)
     {

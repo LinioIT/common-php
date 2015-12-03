@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Linio\Type;
 
@@ -18,95 +19,48 @@ class Money
      */
     protected $scale = 2;
 
-    /**
-     * @param mixed $amount Money amount
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return Money
-     */
-    public function __construct($amount = 0)
+    public function __construct(float $amount = 0)
     {
-        if (!is_numeric($amount)) {
-            throw new \InvalidArgumentException('Amount should be a numeric value');
-        }
-
         $this->amount = $amount * 100;
     }
 
-    /**
-     * @param int $cents Money amount in cents
-     *
-     * @throws InvalidArgumentException
-     *
-     * @return Money
-     */
-    public static function fromCents($cents)
+    public static function fromCents(float $cents): Money
     {
-        if (!is_numeric($cents)) {
-            throw new \InvalidArgumentException('Amount should be a numeric value');
-        }
-
         $money = new self();
         $money->setAmount($cents);
 
         return $money;
     }
 
-    /**
-     * @param Money $operand
-     *
-     * @return Money
-     */
-    public function add(Money $operand)
+    public function add(Money $operand): Money
     {
         $result = $this->amount + $operand->getAmount();
 
         return self::fromCents($result);
     }
 
-    /**
-     * @param Money $operand
-     *
-     * @return Money
-     */
-    public function subtract(Money $operand)
+    public function subtract(Money $operand): Money
     {
         $result = $this->amount - $operand->getAmount();
 
         return self::fromCents($result);
     }
 
-    /**
-     * @param float $multiplier
-     *
-     * @return Money
-     */
-    public function multiply($multiplier)
+    public function multiply(float $multiplier): Money
     {
         $result = $this->amount * $multiplier;
 
         return self::fromCents($result);
     }
 
-    /**
-     * @param float $divisor
-     *
-     * @return Money
-     */
-    public function divide($divisor)
+    public function divide(float $divisor): Money
     {
         $result = $this->amount / $divisor;
 
         return self::fromCents($result);
     }
 
-    /**
-     * @param float $percentage
-     *
-     * @return Money
-     */
-    public function getPercentage($percentage)
+    public function getPercentage(float $percentage): Money
     {
         $percentage = $percentage / 100;
         $result = $this->amount * $percentage;
@@ -114,25 +68,14 @@ class Money
         return self::fromCents($result);
     }
 
-    /**
-     * @param float $percentage
-     *
-     * @return Money
-     */
-    public function applyPercentage($percentage)
+    public function applyPercentage(float $percentage): Money
     {
         $percentage = $this->getPercentage($percentage);
 
         return $this->add($percentage);
     }
 
-    /**
-     * @param float $rate
-     * @param int   $duration
-     *
-     * @return Money
-     */
-    public function getInterest($rate, $duration)
+    public function getInterest(float $rate, int $duration): Money
     {
         $interest = $rate / 100;
         $result = ($this->amount * $duration) * $interest;
@@ -140,25 +83,14 @@ class Money
         return self::fromCents($result);
     }
 
-    /**
-     * @param float $rate
-     * @param int   $duration
-     *
-     * @return Money
-     */
-    public function applyInterest($rate, $duration)
+    public function applyInterest(float $rate, int $duration): Money
     {
         $interest = $this->getInterest($rate, $duration);
 
         return $this->add($interest);
     }
 
-    /**
-     * @param mixed $other
-     *
-     * @return bool
-     */
-    public function equals($other)
+    public function equals($other): bool
     {
         if (!($other instanceof self)) {
             return false;
@@ -167,96 +99,59 @@ class Money
         return $this->amount === $other->getAmount();
     }
 
-    /**
-     * @param Money $other
-     *
-     * @return bool
-     */
-    public function greaterThan(Money $other)
+    public function greaterThan(Money $other): bool
     {
         return $this->amount >= $other->getAmount();
     }
 
-    /**
-     * @param Money $other
-     *
-     * @return bool
-     */
-    public function lessThan(Money $other)
+    public function lessThan(Money $other): bool
     {
         return $this->amount <= $other->getAmount();
     }
 
-    /**
-     * @return bool
-     */
-    public function isZero()
+    public function isZero(): bool
     {
         return $this->amount == 0;
     }
 
-    /**
-     * @return bool
-     */
-    public function isPositive()
+    public function isPositive(): bool
     {
         return $this->amount > 0;
     }
 
-    /**
-     * @return bool
-     */
-    public function isNegative()
+    public function isNegative(): bool
     {
         return $this->amount < 0;
     }
 
-    /**
-     * @return float
-     */
-    public function getMoneyAmount()
+    public function getMoneyAmount(): float
     {
         $money = $this->amount / 100;
 
         return round($money, $this->scale);
     }
 
-    /**
-     * @return int
-     */
-    public function getAmount()
+    public function getAmount(): float
     {
         return $this->amount;
     }
 
-    /**
-     * @param int $amount
-     */
-    public function setAmount($amount)
+    public function setAmount(float $amount)
     {
         $this->amount = $amount;
     }
 
-    /**
-     * @return int
-     */
-    public function getScale()
+    public function getScale(): int
     {
         return $this->scale;
     }
 
-    /**
-     * @param int $scale
-     */
-    public function setScale($scale)
+    public function setScale(int $scale)
     {
         $this->scale = $scale;
     }
 
-    /**
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->amount;
     }

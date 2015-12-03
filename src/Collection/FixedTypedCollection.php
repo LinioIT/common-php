@@ -28,7 +28,7 @@ abstract class FixedTypedCollection extends TypedCollection
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function offsetSet($offset, $value)
     {
@@ -53,7 +53,7 @@ abstract class FixedTypedCollection extends TypedCollection
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function offsetGet($offset)
     {
@@ -80,7 +80,7 @@ abstract class FixedTypedCollection extends TypedCollection
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function matching(Criteria $criteria)
     {

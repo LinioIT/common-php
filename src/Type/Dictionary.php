@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Linio\Type;
 
@@ -14,12 +15,7 @@ class Dictionary implements \JsonSerializable, \Countable
         $this->data = $data;
     }
 
-    /**
-     * @param string $key
-     *
-     * @return mixed
-     */
-    public function get($key, $default = null)
+    public function get(string $key, $default = null)
     {
         if (!isset($this->data[$key])) {
             return $default;
@@ -28,68 +24,42 @@ class Dictionary implements \JsonSerializable, \Countable
         return $this->data[$key];
     }
 
-    /**
-     * @param string $key
-     * @param string $value
-     */
-    public function set($key, $value)
+    public function set(string $key, $value)
     {
         $this->data[$key] = $value;
     }
 
-    /**
-     * @param string $key
-     */
-    public function remove($key)
+    public function remove(string $key)
     {
         unset($this->data[$key]);
     }
 
-    /**
-     * @param string $key
-     *
-     * @return bool
-     */
-    public function has($key)
+    public function has(string $key): bool
     {
         return isset($this->data[$key]);
     }
 
-    /**
-     * @param string $value
-     *
-     * @return bool
-     */
-    public function contains($value)
+    public function contains($value): bool
     {
         return in_array($value, $this->data);
     }
 
-    /**
-     * @param array $data
-     */
     public function replace(array $data)
     {
         $this->data = $data;
     }
 
-    /**
-     * @return array
-     */
-    public function getKeys()
+    public function getKeys(): array
     {
         return array_keys($this->data);
     }
 
-    /**
-     * @return bool
-     */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return empty($this->data);
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->data);
     }
@@ -99,26 +69,17 @@ class Dictionary implements \JsonSerializable, \Countable
         $this->data = [];
     }
 
-    /**
-     * @return array
-     */
-    public function toArray()
+    public function toArray(): array
     {
         return $this->data;
     }
 
-    /**
-     * @return string
-     */
-    public function jsonSerialize()
+    public function jsonSerialize(): string
     {
         return json_encode($this->data);
     }
 
-    /**
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->jsonSerialize();
     }
