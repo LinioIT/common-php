@@ -26,7 +26,7 @@ class Money
 
     public static function fromCents(float $cents): Money
     {
-        $money = new self();
+        $money = new static();
         $money->setAmount($cents);
 
         return $money;
@@ -36,28 +36,28 @@ class Money
     {
         $result = $this->amount + $operand->getAmount();
 
-        return self::fromCents($result);
+        return static::fromCents($result);
     }
 
     public function subtract(Money $operand): Money
     {
         $result = $this->amount - $operand->getAmount();
 
-        return self::fromCents($result);
+        return static::fromCents($result);
     }
 
     public function multiply(float $multiplier): Money
     {
         $result = $this->amount * $multiplier;
 
-        return self::fromCents($result);
+        return static::fromCents($result);
     }
 
     public function divide(float $divisor): Money
     {
         $result = $this->amount / $divisor;
 
-        return self::fromCents($result);
+        return static::fromCents($result);
     }
 
     public function getPercentage(float $percentage): Money
@@ -65,7 +65,7 @@ class Money
         $percentage = $percentage / 100;
         $result = $this->amount * $percentage;
 
-        return self::fromCents($result);
+        return static::fromCents($result);
     }
 
     public function applyPercentage(float $percentage): Money
@@ -80,7 +80,7 @@ class Money
         $interest = $rate / 100;
         $result = ($this->amount * $duration) * $interest;
 
-        return self::fromCents($result);
+        return static::fromCents($result);
     }
 
     public function applyInterest(float $rate, int $duration): Money
@@ -92,7 +92,7 @@ class Money
 
     public function equals($other): bool
     {
-        if (!($other instanceof self)) {
+        if (!($other instanceof static)) {
             return false;
         }
 
