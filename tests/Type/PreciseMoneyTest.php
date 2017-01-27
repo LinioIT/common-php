@@ -49,7 +49,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException TypeError
+     * @expectedException \TypeError
      */
     public function testIsNotCreatingMoneyWithString()
     {
@@ -164,7 +164,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($money1->lessThan($money2));
         $this->assertFalse($money2->lessThan($money1));
         $this->assertTrue($money2->equals($money2));
-        $this->assertFalse($money2->equals(new \stdClass));
+        $this->assertFalse($money2->equals(new \stdClass()));
     }
 
     public function testIsCheckingMonies()

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Linio\Type;
@@ -84,17 +85,17 @@ class PreciseMoney extends Money
             return false;
         }
 
-        return (bccomp((string) $this->amount, (string) $other->getAmount()) === 0);
+        return bccomp((string) $this->amount, (string) $other->getAmount()) === 0;
     }
 
     public function greaterThan(Money $other): bool
     {
-        return (bccomp((string) $this->amount, (string) $other->getAmount()) === 1);
+        return bccomp((string) $this->amount, (string) $other->getAmount()) === 1;
     }
 
     public function lessThan(Money $other): bool
     {
-        return (bccomp((string) $this->amount, (string) $other->getAmount()) === -1);
+        return bccomp((string) $this->amount, (string) $other->getAmount()) === -1;
     }
 
     public function getMoneyAmount(): float

@@ -16,7 +16,8 @@
         "symfony/routing": "~2.7",
         "symfony/framework-bundle": "~2.7",
         "doctrine/orm": "~2.5",
-        "gedmo/doctrine-extensions": "~2.3"
+        "gedmo/doctrine-extensions": "~2.3",
+        "friendsofphp/php-cs-fixer": "^2.0"
     },
     "config": {
         "bin-dir": "bin"

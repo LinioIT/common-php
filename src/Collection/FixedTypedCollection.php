@@ -39,9 +39,9 @@ abstract class FixedTypedCollection extends TypedCollection
     /**
      * @param int|string $key
      *
-     * @return mixed|null
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return mixed|null
      */
     public function get($key)
     {

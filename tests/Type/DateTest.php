@@ -12,10 +12,10 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
     public function testIsCreatingFromDateTime()
     {
-    	$dateTime = new \DateTime('2000-01-01 09:09:09');
-    	$date = Date::createFromDateTime($dateTime);
+        $dateTime = new \DateTime('2000-01-01 09:09:09');
+        $date = Date::createFromDateTime($dateTime);
 
-    	$this->assertInstanceOf('Linio\Type\Date', $date);
-    	$this->assertEquals('2000-01-01', $date->format('Y-m-d'));
+        $this->assertInstanceOf('Linio\Type\Date', $date);
+        $this->assertEquals('2000-01-01', $date->format('Y-m-d'));
     }
 }

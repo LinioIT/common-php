@@ -12,10 +12,10 @@ class TimeTest extends \PHPUnit_Framework_TestCase
 
     public function testIsCreatingFromDateTime()
     {
-    	$dateTime = new \DateTime('2000-01-01 09:09:09');
-    	$time = Time::createFromDateTime($dateTime);
+        $dateTime = new \DateTime('2000-01-01 09:09:09');
+        $time = Time::createFromDateTime($dateTime);
 
-    	$this->assertInstanceOf('Linio\Type\Time', $time);
-    	$this->assertEquals('09:09:09', $time->format('H:i:s'));
+        $this->assertInstanceOf('Linio\Type\Time', $time);
+        $this->assertEquals('09:09:09', $time->format('H:i:s'));
     }
 }
