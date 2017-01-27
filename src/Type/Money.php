@@ -21,7 +21,7 @@ class Money
 
     public function __construct(float $amount = 0)
     {
-        $this->amount = $amount * 100;
+        $this->amount = (int) round($amount * 100);
     }
 
     public static function fromCents(float $cents): Money
@@ -131,14 +131,14 @@ class Money
         return round($money, $this->scale);
     }
 
-    public function getAmount(): float
+    public function getAmount(): int
     {
         return $this->amount;
     }
 
     public function setAmount(float $amount)
     {
-        $this->amount = $amount;
+        $this->amount = (int) round($amount);
     }
 
     public function getScale(): int

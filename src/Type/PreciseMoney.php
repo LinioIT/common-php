@@ -104,9 +104,9 @@ class PreciseMoney extends Money
         return round($money, $this->scale);
     }
 
-    public function getAmount(): float
+    public function getAmount(): int
     {
-        return (float) $this->amount;
+        return (int) round($this->amount);
     }
 
     public function setAmount(float $amount)
