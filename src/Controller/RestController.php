@@ -10,7 +10,7 @@ abstract class RestController
      * @param string $message
      * @param int    $status
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return JsonResponse
      */
     public function abort($message = '', $status = 500)
     {
