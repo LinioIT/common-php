@@ -63,8 +63,6 @@ trait TemplatingAware
      * @param array            $parameters An array of parameters to pass to the view
      * @param StreamedResponse $response   A response instance
      *
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     *
      * @return StreamedResponse A StreamedResponse instance
      */
     public function stream($view, array $parameters = [], StreamedResponse $response = null)

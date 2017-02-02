@@ -2,8 +2,9 @@
 
 namespace Linio\Controller;
 
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Form;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormTypeInterface;
 
@@ -50,10 +51,10 @@ trait FormAware
      * @param mixed $data    The initial data for the form
      * @param array $options Options for the form
      *
-     * @return FormBuilder
+     * @return FormBuilderInterface
      */
     public function createFormBuilder($data = null, array $options = [])
     {
-        return $this->formFactory->createBuilder('form', $data, $options);
+        return $this->formFactory->createBuilder(FormType::class, $data, $options);
     }
 }
