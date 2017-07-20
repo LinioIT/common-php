@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Test;
 
 use Nelmio\Alice\Fixtures\Loader;

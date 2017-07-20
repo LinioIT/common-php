@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Type;
 
 class DateTest extends \PHPUnit_Framework_TestCase

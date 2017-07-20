@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Controller;
 
 class FlashMessageAwareTest extends \PHPUnit_Framework_TestCase

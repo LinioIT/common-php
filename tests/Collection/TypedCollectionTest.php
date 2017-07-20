@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Collection;
 
 class TypedCollectionTest extends \PHPUnit_Framework_TestCase

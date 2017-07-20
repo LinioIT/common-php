@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Collection;
 
 use Doctrine\Common\Collections\ArrayCollection;
