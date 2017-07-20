@@ -21,9 +21,6 @@
         "symfony/security": "^3.2",
         "symfony/templating": "^3.2"
     },
-    "config": {
-        "bin-dir": "bin"
-    },
     "autoload": {
         "psr-4": {
             "Linio\\": "src"
