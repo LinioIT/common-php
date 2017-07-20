@@ -16,12 +16,8 @@ Install
 
 The recommended way to install Linio Common is [through composer](http://getcomposer.org).
 
-```JSON
-{
-    "require": {
-        "linio/common": "dev-master"
-    }
-}
+```
+$ composer require linio/common
 ```
 
 Tests
