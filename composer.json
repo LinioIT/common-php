@@ -12,14 +12,9 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^5.0",
-        "symfony/form": "^2.8|^3.0",
-        "symfony/routing": "^2.8|^3.0",
-        "symfony/framework-bundle": "^2.8|^3.0",
         "doctrine/orm": "^2.5",
         "gedmo/doctrine-extensions": "^2.3",
-        "friendsofphp/php-cs-fixer": "^2.0",
-        "symfony/security": "^3.2",
-        "symfony/templating": "^3.2"
+        "friendsofphp/php-cs-fixer": "^2.0"
     },
     "autoload": {
         "psr-4": {
