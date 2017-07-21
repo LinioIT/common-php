@@ -23,7 +23,5 @@
         "psr-4": {
             "Linio\\Common\\": "tests/"
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
