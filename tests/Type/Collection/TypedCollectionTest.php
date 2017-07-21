@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Linio\Common\Collection;
+namespace Linio\Common\Type\Collection;
 
 class TypedCollectionTest extends \PHPUnit_Framework_TestCase
 {

@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Linio\Common\Collection;
+namespace Linio\Common\Type\Collection;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use InvalidArgumentException;
 
 abstract class TypedCollection extends ArrayCollection
 {
@@ -23,7 +24,7 @@ abstract class TypedCollection extends ArrayCollection
     /**
      * {@inheritdoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->validateType($value);
         parent::offsetSet($offset, $value);
@@ -32,29 +33,22 @@ abstract class TypedCollection extends ArrayCollection
     /**
      * {@inheritdoc}
      */
-    public function add($value)
+    public function add($value): void
     {
         $this->validateType($value);
         parent::add($value);
     }
 
     /**
-     * @param mixed $value
-     *
      * @throws InvalidArgumentException
      */
-    protected function validateType($value)
+    protected function validateType($value): void
     {
         if (!$this->isValidType($value)) {
             $type = is_object($value) ? get_class($value) : gettype($value);
-            throw new \InvalidArgumentException('Unsupported type: ' . $type);
+            throw new InvalidArgumentException('Unsupported type: ' . $type);
         }
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return bool
-     */
-    abstract public function isValidType($value);
+    abstract public function isValidType($value): bool;
 }

@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Linio\Common\Collection;
+namespace Linio\Common\Type\Collection;
 
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Expr\ClosureExpressionVisitor;
+use InvalidArgumentException;
+use Linio\Common\Type\Collection\TypedCollection;
 
 abstract class FixedTypedCollection extends TypedCollection
 {
@@ -15,24 +17,25 @@ abstract class FixedTypedCollection extends TypedCollection
     protected $size;
 
     /**
-     * @param int   $size
-     * @param array $elements
+     * {@inheritdoc}
+     *
+     * @throws InvalidArgumentException
      */
-    public function __construct($size, array $elements = [])
+    public function __construct(int $size, array $elements = [])
     {
-        $this->size = (int) $size;
+        $this->size = $size;
 
         parent::__construct($elements);
 
         if ($this->count() > $this->size) {
-            throw new \InvalidArgumentException('Index invalid or out of range');
+            throw new InvalidArgumentException('Index invalid or out of range');
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->validateSize();
         parent::offsetSet($offset, $value);
@@ -41,14 +44,14 @@ abstract class FixedTypedCollection extends TypedCollection
     /**
      * @param int|string $key
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *
      * @return mixed|null
      */
     public function get($key)
     {
         if (!$this->containsKey($key)) {
-            throw new \InvalidArgumentException('Index invalid or out of range');
+            throw new InvalidArgumentException('Index invalid or out of range');
         }
 
         return parent::get($key);
@@ -65,19 +68,19 @@ abstract class FixedTypedCollection extends TypedCollection
     /**
      * {@inheritdoc}
      */
-    public function add($value)
+    public function add($value): void
     {
         $this->validateSize();
         parent::add($value);
     }
 
     /**
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
-    protected function validateSize()
+    protected function validateSize(): void
     {
         if ($this->count() >= $this->size) {
-            throw new \InvalidArgumentException('Index invalid or out of range');
+            throw new InvalidArgumentException('Index invalid or out of range');
         }
     }
 
