@@ -10,7 +10,7 @@ class FixedTypedCollectionTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Index invalid or out of range
      */
-    public function testIsValidatingSizeOnConstructor()
+    public function testIsValidatingSizeOnConstructor(): void
     {
         $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
         $collection->expects($this->at(0))
@@ -27,7 +27,7 @@ class FixedTypedCollectionTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Index invalid or out of range
      */
-    public function testIsValidatingSizeOnOffsetSet()
+    public function testIsValidatingSizeOnOffsetSet(): void
     {
         $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
         $collection->__construct(0);
@@ -39,7 +39,7 @@ class FixedTypedCollectionTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Index invalid or out of range
      */
-    public function testIsValidatingSizeOnAdd()
+    public function testIsValidatingSizeOnAdd(): void
     {
         $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
         $collection->__construct(0);
@@ -47,7 +47,7 @@ class FixedTypedCollectionTest extends \PHPUnit_Framework_TestCase
         $collection->add('foo');
     }
 
-    public function testIsGetting()
+    public function testIsGetting(): void
     {
         $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
         $collection->expects($this->at(0))
@@ -64,7 +64,7 @@ class FixedTypedCollectionTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Index invalid or out of range
      */
-    public function testIsValidatingKeyOnGet()
+    public function testIsValidatingKeyOnGet(): void
     {
         $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
         $collection->__construct(1);
@@ -76,7 +76,7 @@ class FixedTypedCollectionTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Index invalid or out of range
      */
-    public function testIsValidatingKeyOnOffsetGet()
+    public function testIsValidatingKeyOnOffsetGet(): void
     {
         $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
         $collection->__construct(1);
@@ -84,7 +84,7 @@ class FixedTypedCollectionTest extends \PHPUnit_Framework_TestCase
         $collection[2];
     }
 
-    public function testIsApplyingMatchingCriteria()
+    public function testIsApplyingMatchingCriteria(): void
     {
         $criteria = $this->getMockBuilder(
             '\Doctrine\Common\Collections\Criteria',

@@ -6,7 +6,7 @@ namespace Linio\Common\Type;
 
 class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
 {
-    public function testIsCreatingMoney()
+    public function testIsCreatingMoney(): void
     {
         $money = new PreciseMoney(200);
         $this->assertEquals(200, $money->getMoneyAmount());
@@ -27,7 +27,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(245656, $money->getAmount());
     }
 
-    public function testIsHandlingScale()
+    public function testIsHandlingScale(): void
     {
         $money = new PreciseMoney(256.73);
         $money->setScale(3);
@@ -35,7 +35,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $money->getScale());
     }
 
-    public function testIsCreatingMoneyWithFloat()
+    public function testIsCreatingMoneyWithFloat(): void
     {
         $money = new PreciseMoney(25.00);
         $this->assertEquals(25, $money->getMoneyAmount());
@@ -53,12 +53,12 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \TypeError
      */
-    public function testIsNotCreatingMoneyWithString()
+    public function testIsNotCreatingMoneyWithString(): void
     {
         $money = new PreciseMoney('test');
     }
 
-    public function testIsAddingMonies()
+    public function testIsAddingMonies(): void
     {
         $money1 = new PreciseMoney(100);
         $money2 = new PreciseMoney(100);
@@ -67,7 +67,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected->getMoneyAmount(), $result->getMoneyAmount());
     }
 
-    public function testIsSubtractingMonies()
+    public function testIsSubtractingMonies(): void
     {
         $money1 = new PreciseMoney(200);
         $money2 = new PreciseMoney(100);
@@ -82,7 +82,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected->getMoneyAmount(), $result->getMoneyAmount());
     }
 
-    public function testIsMultiplyingMonies()
+    public function testIsMultiplyingMonies(): void
     {
         $money = new PreciseMoney(1);
         $expected = new PreciseMoney(2);
@@ -102,7 +102,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected->getMoneyAmount(), $result->getMoneyAmount());
     }
 
-    public function testIsDividingMonies()
+    public function testIsDividingMonies(): void
     {
         $money = new PreciseMoney(10);
         $expected = new PreciseMoney(5);
@@ -113,7 +113,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected->getMoneyAmount(), $money->divide(3)->getMoneyAmount());
     }
 
-    public function testIsCalculatingPercentage()
+    public function testIsCalculatingPercentage(): void
     {
         $money = new PreciseMoney(100);
         $expected = new PreciseMoney(8);
@@ -145,7 +145,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($total->getMoneyAmount(), $money->applyPercentage(0.0041)->getMoneyAmount());
     }
 
-    public function testIsCalculatingInterestRate()
+    public function testIsCalculatingInterestRate(): void
     {
         $money = new PreciseMoney(100);
         $expected = new PreciseMoney(9.99);
@@ -156,7 +156,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($total->getMoneyAmount(), $money->applyInterest(0.333, 30)->getMoneyAmount());
     }
 
-    public function testIsComparingMonies()
+    public function testIsComparingMonies(): void
     {
         $money1 = new PreciseMoney(1);
         $money2 = new PreciseMoney(2);
@@ -169,7 +169,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($money2->equals(new \stdClass()));
     }
 
-    public function testIsCheckingMonies()
+    public function testIsCheckingMonies(): void
     {
         $this->assertTrue((new PreciseMoney(0))->isZero());
         $this->assertTrue((new PreciseMoney(-1))->isNegative());
@@ -179,7 +179,7 @@ class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse((new PreciseMoney(-1))->isPositive());
     }
 
-    public function testIsConvertingToString()
+    public function testIsConvertingToString(): void
     {
         $money = new PreciseMoney(457.98);
         $this->assertEquals('45798', (string) $money);

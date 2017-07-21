@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace Linio\Common\Type;
 
-class Date extends \DateTime
+use DateTime;
+use DateTimeZone;
+
+class Date extends DateTime
 {
-    public function __construct(string $time = 'now', \DateTimeZone $timezone = null)
+    public function __construct(string $time = 'now', DateTimeZone $timezone = null)
     {
         parent::__construct($time, $timezone);
         $this->setTime(0, 0, 0);
     }
 
-    public static function createFromDateTime(\DateTime $dateTime): Date
+    public static function createFromDateTime(DateTime $dateTime): Date
     {
         return new self($dateTime->format('Y-m-d'));
     }

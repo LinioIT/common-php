@@ -137,7 +137,7 @@ class Money
         return $this->amount;
     }
 
-    public function setAmount(float $amount)
+    public function setAmount(float $amount): void
     {
         $this->amount = (int) round($amount);
     }
@@ -147,7 +147,7 @@ class Money
         return $this->scale;
     }
 
-    public function setScale(int $scale)
+    public function setScale(int $scale): void
     {
         $this->scale = $scale;
     }

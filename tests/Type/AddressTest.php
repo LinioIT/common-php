@@ -6,7 +6,7 @@ namespace Linio\Common\Type;
 
 class AddressTest extends \PHPUnit_Framework_TestCase
 {
-    public function testIsGettingFullAddress()
+    public function testIsGettingFullAddress(): void
     {
         $address = new Address();
         $address->setLine1('foo');

@@ -10,7 +10,7 @@ class TypedCollectionTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Unsupported type: stdClass
      */
-    public function testIsValidatingTypeOnConstruct()
+    public function testIsValidatingTypeOnConstruct(): void
     {
         $collection = $this->getMockForAbstractClass('Linio\Collection\TypedCollection');
         $collection->expects($this->at(0))
@@ -26,7 +26,7 @@ class TypedCollectionTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Unsupported type: string
      */
-    public function testIsValidatingTypeOnOffsetSet()
+    public function testIsValidatingTypeOnOffsetSet(): void
     {
         $collection = $this->getMockForAbstractClass('Linio\Collection\TypedCollection');
         $collection->expects($this->once())
@@ -39,7 +39,7 @@ class TypedCollectionTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Unsupported type: string
      */
-    public function testIsValidatingTypeOnAdd()
+    public function testIsValidatingTypeOnAdd(): void
     {
         $collection = $this->getMockForAbstractClass('Linio\Collection\TypedCollection');
         $collection->expects($this->once())
