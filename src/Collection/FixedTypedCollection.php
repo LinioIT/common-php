@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Linio\Collection;
+namespace Linio\Common\Collection;
 
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Expr\ClosureExpressionVisitor;

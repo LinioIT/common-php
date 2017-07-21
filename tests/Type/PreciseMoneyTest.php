@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Linio\Type;
+namespace Linio\Common\Type;
 
 class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
 {

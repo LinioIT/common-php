@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Linio\Type;
+namespace Linio\Common\Type;
 
 class PreciseMoney extends Money
 {

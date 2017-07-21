@@ -16,12 +16,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Linio\\": "src"
+            "Linio\\Common\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Linio\\": "tests"
+            "Linio\\Common\\": "tests/"
         }
     },
     "minimum-stability": "dev",
