@@ -16,7 +16,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Linio\\Common\\": "src/"
+            "Linio\\Common\\": "src/",
+            "Linio\\": "forwardCompatibility/"
         }
     },
     "autoload-dev": {
