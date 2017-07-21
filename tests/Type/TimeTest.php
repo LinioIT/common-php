@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Linio\Common\Type;
 
-class TimeTest extends \PHPUnit_Framework_TestCase
+use DateTime;
+use PHPUnit\Framework\TestCase;
+
+class TimeTest extends TestCase
 {
     public function testIsCreatingTime(): void
     {
@@ -14,7 +17,7 @@ class TimeTest extends \PHPUnit_Framework_TestCase
 
     public function testIsCreatingFromDateTime(): void
     {
-        $dateTime = new \DateTime('2000-01-01 09:09:09');
+        $dateTime = new DateTime('2000-01-01 09:09:09');
         $time = Time::createFromDateTime($dateTime);
 
         $this->assertInstanceOf('Linio\Type\Time', $time);

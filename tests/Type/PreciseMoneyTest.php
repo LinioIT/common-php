@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Linio\Common\Type;
 
-class PreciseMoneyTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class PreciseMoneyTest extends TestCase
 {
     public function testIsCreatingMoney(): void
     {

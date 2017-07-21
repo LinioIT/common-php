@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Linio\Common\Type;
 
-class DictionaryTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class DictionaryTest extends TestCase
 {
     public function testIsGettingKey(): void
     {

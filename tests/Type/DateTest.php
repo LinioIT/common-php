@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Linio\Common\Type;
 
-class DateTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class DateTest extends TestCase
 {
     public function testIsCreatingDate(): void
     {
