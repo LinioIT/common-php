@@ -17,7 +17,7 @@ class FixedTypedCollectionTest extends TestCase
         $object2 = new class {};
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Index invalid or out of range");
+        $this->expectExceptionMessage('Index invalid or out of range');
 
         new class(1, [$object1, $object2]) extends FixedTypedCollection {
             public function isValidType($value): bool
@@ -37,7 +37,7 @@ class FixedTypedCollectionTest extends TestCase
         };
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Index invalid or out of range");
+        $this->expectExceptionMessage('Index invalid or out of range');
 
         $collection[] = new class {};
     }
@@ -54,7 +54,7 @@ class FixedTypedCollectionTest extends TestCase
         };
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Index invalid or out of range");
+        $this->expectExceptionMessage('Index invalid or out of range');
 
         $collection->add($object1);
     }
@@ -85,7 +85,7 @@ class FixedTypedCollectionTest extends TestCase
         };
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Index invalid or out of range");
+        $this->expectExceptionMessage('Index invalid or out of range');
 
         $collection->get(1);
     }
@@ -104,7 +104,7 @@ class FixedTypedCollectionTest extends TestCase
         };
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Index invalid or out of range");
+        $this->expectExceptionMessage('Index invalid or out of range');
 
         $collection[2];
     }
