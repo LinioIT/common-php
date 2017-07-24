@@ -5,9 +5,7 @@ Linio Common
 Linio Common contains small components that either extend PHP's functionality or provide
 a coherent base for Linio components:
 
-* Service traits
-* Controller helper methods
-* Types, collections
+* Common & Collection Types
 
 Install
 -------
