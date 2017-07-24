@@ -5,6 +5,7 @@ Linio Common contains small components that either extend PHP's functionality or
 a coherent base for Linio components:
 
 * Common & Collection Types
+* Base exceptions
 
 ## Install
 
