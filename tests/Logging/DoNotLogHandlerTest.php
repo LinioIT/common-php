@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class DoNotLogHandlerTest extends TestCase
 {
-    public function testItSkipsRecordsWithNoExceptions()
+    public function testItSkipsRecordsWithNoExceptions(): void
     {
         $handler = new DoNotLogHandler();
         $actual = $handler->handle([]);
@@ -18,7 +18,7 @@ class DoNotLogHandlerTest extends TestCase
         $this->assertFalse($actual);
     }
 
-    public function testItSkipsRecordsWithDoNotLog()
+    public function testItSkipsRecordsWithDoNotLog(): void
     {
         $exception = new ClientException('TEST');
 
@@ -28,9 +28,10 @@ class DoNotLogHandlerTest extends TestCase
         $this->assertTrue($actual);
     }
 
-    public function testItDoesNotSkipRecordsWithForceLogging()
+    public function testItDoesNotSkipRecordsWithForceLogging(): void
     {
-        $exception = new class('TEST') extends ClientException implements ForceLogging {};
+        $exception = new class('TEST') extends ClientException implements ForceLogging {
+        };
 
         $handler = new DoNotLogHandler();
         $actual = $handler->handle(['context' => ['exception' => $exception]]);

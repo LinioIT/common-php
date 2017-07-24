@@ -17,7 +17,7 @@ class Error
     protected $field;
 
     /**
-     * @param string $message Any text string is valid, however, TOKENS are recommended to support translation.
+     * @param string $message any text string is valid, however, TOKENS are recommended to support translation
      * @param null|string $field
      */
     public function __construct(string $message, ?string $field = null)
