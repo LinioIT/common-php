@@ -5,8 +5,6 @@ Linio Common
 Linio Common contains small components that either extend PHP's functionality or provide
 a coherent base for Linio components:
 
-* Service traits
-* Controller helper methods
 * Base test cases & constraints
 * Types, collections
 * Exceptions
@@ -126,40 +124,3 @@ class UserCollection extends TypedCollection
     }
 }
 ```
-
-Controllers
------------
-
-The base framework includes abstract controllers with a few helper methods
-to speedup application development. The `RestController`, for instance, contains
-various methods to make developing RESTful API's easier:
-
-
-```php
-<?php
-
-use Linio\Controller\RestController;
-
-class FooController extends RestController
-{
-    public function barAction()
-    {
-        // Error output
-        if (!$do->something()) {
-            $this->abort('Something went wrong');
-        }
-    }
-}
-```
-
-Service Traits
---------------
-
-The common library includes service traits, so you can easily inject dependencies
-and make use of services in your controllers. There are various controller-specific
-traits available:
-
-* `FormAware`: allows you to use the `symfony/form` component and provides helpers
-* `RouterAware`: allows you to use the `symfony/routing` component and provides helpers
-* `TemplatingAware`: allows you to use the `symfony/templating` component and provides helpers
-* `SessionAware`: allows you to use the `symfony/http-foundation/session` component and provides helpers
