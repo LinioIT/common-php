@@ -86,10 +86,10 @@ class FixedTypedCollectionTest extends \PHPUnit_Framework_TestCase
 
     public function testIsApplyingMatchingCriteria()
     {
-        $criteria = $this->getMock(
+        $criteria = $this->getMockBuilder(
             '\Doctrine\Common\Collections\Criteria',
             ['getWhereExpression', 'getFirstResult', 'getMaxResults']
-        );
+        )->getMock();
 
         $criteria->expects($this->once())
             ->method('getWhereExpression');
