@@ -34,7 +34,7 @@ in an idiomatic way:
 ```php
 <?php
 
-use Linio\Type\Dictionary;
+use Linio\Common\Type\Dictionary;
 
 $dict = new Dictionary(['foo' => 'bar']);
 
@@ -65,13 +65,13 @@ implementing a type validation method. For example:
 ```php
 <?php
 
-use Linio\Collection\TypedCollection;
+use Linio\Common\Type\Collection\TypedCollection;
 
 class UserCollection extends TypedCollection
 {
-    public function isValidType($value)
+    public function isValidType($value): bool
     {
-        return ($value instanceof User);
+        return $value instanceof User;
     }
 }
 ```
