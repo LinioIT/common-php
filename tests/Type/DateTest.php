@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Linio\Common\Type;
 
+use DateTime;
 use PHPUnit\Framework\TestCase;
 
 class DateTest extends TestCase
@@ -16,10 +17,10 @@ class DateTest extends TestCase
 
     public function testIsCreatingFromDateTime(): void
     {
-        $dateTime = new \DateTime('2000-01-01 09:09:09');
+        $dateTime = new DateTime('2000-01-01 09:09:09');
         $date = Date::createFromDateTime($dateTime);
 
-        $this->assertInstanceOf('Linio\Type\Date', $date);
+        $this->assertInstanceOf(Date::class, $date);
         $this->assertEquals('2000-01-01', $date->format('Y-m-d'));
     }
 }
