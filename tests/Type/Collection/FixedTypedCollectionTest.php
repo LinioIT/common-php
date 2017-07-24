@@ -13,8 +13,10 @@ class FixedTypedCollectionTest extends TestCase
 {
     public function testIsValidatingSizeOnConstructor(): void
     {
-        $object1 = new class {};
-        $object2 = new class {};
+        $object1 = new class() {
+        };
+        $object2 = new class() {
+        };
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Index invalid or out of range');
@@ -39,12 +41,14 @@ class FixedTypedCollectionTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Index invalid or out of range');
 
-        $collection[] = new class {};
+        $collection[] = new class() {
+        };
     }
 
     public function testIsValidatingSizeOnAdd(): void
     {
-        $object1 = new class {};
+        $object1 = new class() {
+        };
 
         $collection = new class(0) extends FixedTypedCollection {
             public function isValidType($value): bool
@@ -61,7 +65,8 @@ class FixedTypedCollectionTest extends TestCase
 
     public function testIsGetting(): void
     {
-        $object1 = new class {};
+        $object1 = new class() {
+        };
 
         $collection = new class(1, [$object1]) extends FixedTypedCollection {
             public function isValidType($value): bool
@@ -75,7 +80,8 @@ class FixedTypedCollectionTest extends TestCase
 
     public function testIsValidatingKeyOnGet(): void
     {
-        $object1 = new class {};
+        $object1 = new class() {
+        };
 
         $collection = new class(1, [$object1]) extends FixedTypedCollection {
             public function isValidType($value): bool
@@ -92,7 +98,7 @@ class FixedTypedCollectionTest extends TestCase
 
     public function testIsValidatingKeyOnOffsetGet(): void
     {
-        $object1 = new class {
+        $object1 = new class() {
             public $test = 'foo';
         };
 
@@ -111,7 +117,7 @@ class FixedTypedCollectionTest extends TestCase
 
     public function testIsApplyingMatchingCriteria(): void
     {
-        $object1 = new class {
+        $object1 = new class() {
             public $test = 'foo';
         };
 

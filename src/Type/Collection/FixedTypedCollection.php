@@ -7,7 +7,6 @@ namespace Linio\Common\Type\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Expr\ClosureExpressionVisitor;
 use InvalidArgumentException;
-use Linio\Common\Type\Collection\TypedCollection;
 
 abstract class FixedTypedCollection extends TypedCollection
 {
