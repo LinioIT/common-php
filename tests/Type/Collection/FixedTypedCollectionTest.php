@@ -4,114 +4,128 @@ declare(strict_types=1);
 
 namespace Linio\Common\Type\Collection;
 
+use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\ExpressionBuilder;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class FixedTypedCollectionTest extends TestCase
 {
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Index invalid or out of range
-     */
     public function testIsValidatingSizeOnConstructor(): void
     {
-        $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
-        $collection->expects($this->at(0))
-            ->method('isValidType')
-            ->willReturn(true);
-        $collection->expects($this->at(1))
-            ->method('isValidType')
-            ->willReturn(true);
+        $object1 = new class {};
+        $object2 = new class {};
 
-        $collection->__construct(1, ['foo', 'bar']);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Index invalid or out of range");
+
+        new class(1, [$object1, $object2]) extends FixedTypedCollection {
+            public function isValidType($value): bool
+            {
+                return true;
+            }
+        };
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Index invalid or out of range
-     */
     public function testIsValidatingSizeOnOffsetSet(): void
     {
-        $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
-        $collection->__construct(0);
+        $collection = new class(0) extends FixedTypedCollection {
+            public function isValidType($value): bool
+            {
+                return true;
+            }
+        };
 
-        $collection[] = 'foo';
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Index invalid or out of range");
+
+        $collection[] = new class {};
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Index invalid or out of range
-     */
     public function testIsValidatingSizeOnAdd(): void
     {
-        $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
-        $collection->__construct(0);
+        $object1 = new class {};
 
-        $collection->add('foo');
+        $collection = new class(0) extends FixedTypedCollection {
+            public function isValidType($value): bool
+            {
+                return true;
+            }
+        };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Index invalid or out of range");
+
+        $collection->add($object1);
     }
 
     public function testIsGetting(): void
     {
-        $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
-        $collection->expects($this->at(0))
-            ->method('isValidType')
-            ->willReturn(true);
+        $object1 = new class {};
 
-        $collection->__construct(1);
-        $collection->add('foo');
+        $collection = new class(1, [$object1]) extends FixedTypedCollection {
+            public function isValidType($value): bool
+            {
+                return true;
+            }
+        };
 
-        $this->assertEquals('foo', $collection->get(0));
+        $this->assertEquals($object1, $collection->get(0));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Index invalid or out of range
-     */
     public function testIsValidatingKeyOnGet(): void
     {
-        $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
-        $collection->__construct(1);
+        $object1 = new class {};
 
-        $collection->get(2);
+        $collection = new class(1, [$object1]) extends FixedTypedCollection {
+            public function isValidType($value): bool
+            {
+                return true;
+            }
+        };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Index invalid or out of range");
+
+        $collection->get(1);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Index invalid or out of range
-     */
     public function testIsValidatingKeyOnOffsetGet(): void
     {
-        $collection = $this->getMockForAbstractClass('Linio\Collection\FixedTypedCollection', [], '', false);
-        $collection->__construct(1);
+        $object1 = new class {
+            public $test = 'foo';
+        };
+
+        $collection = new class(1, [$object1]) extends FixedTypedCollection {
+            public function isValidType($value): bool
+            {
+                return true;
+            }
+        };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Index invalid or out of range");
 
         $collection[2];
     }
 
     public function testIsApplyingMatchingCriteria(): void
     {
-        $criteria = $this->getMockBuilder(
-            '\Doctrine\Common\Collections\Criteria',
-            ['getWhereExpression', 'getFirstResult', 'getMaxResults']
-        )->getMock();
+        $object1 = new class {
+            public $test = 'foo';
+        };
 
-        $criteria->expects($this->once())
-            ->method('getWhereExpression');
+        $collection = new class(1, [$object1]) extends FixedTypedCollection {
+            public function isValidType($value): bool
+            {
+                return true;
+            }
+        };
 
-        $criteria->expects($this->once())
-            ->method('getFirstResult');
+        $criteria = Criteria::create()->where((new ExpressionBuilder())->eq('test', 'foo'));
 
-        $criteria->expects($this->once())
-            ->method('getMaxResults');
+        $actual = $collection->matching($criteria);
 
-        $collection = $this->getMockForAbstractClass(
-            'Linio\Collection\FixedTypedCollection',
-            [1, ['1']],
-            '',
-            true,
-            true,
-            true,
-            ['validateType']
-        );
-
-        $collection->matching($criteria);
+        $this->assertSame([$object1], $actual->getValues());
     }
 }
