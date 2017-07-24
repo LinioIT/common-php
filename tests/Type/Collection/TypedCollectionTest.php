@@ -4,49 +4,53 @@ declare(strict_types=1);
 
 namespace Linio\Common\Type\Collection;
 
+use DateTime;
+use DateTimeImmutable;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class TypedCollectionTest extends TestCase
 {
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Unsupported type: stdClass
-     */
     public function testIsValidatingTypeOnConstruct(): void
     {
-        $collection = $this->getMockForAbstractClass('Linio\Collection\TypedCollection');
-        $collection->expects($this->at(0))
-            ->method('isValidType')
-            ->will($this->returnValue(true));
-        $collection->expects($this->at(1))
-            ->method('isValidType')
-            ->will($this->returnValue(false));
-        $collection->__construct([new \DateTime(), new \StdClass()]);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unsupported type: DateTime');
+
+        new class([new DateTime(), new DateTimeImmutable()]) extends TypedCollection {
+            public function isValidType($value): bool
+            {
+                return $value instanceof DateTimeImmutable;
+            }
+        };
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Unsupported type: string
-     */
     public function testIsValidatingTypeOnOffsetSet(): void
     {
-        $collection = $this->getMockForAbstractClass('Linio\Collection\TypedCollection');
-        $collection->expects($this->once())
-            ->method('isValidType')
-            ->will($this->returnValue(false));
-        $collection[] = 'foobar';
+        $collection = new class([]) extends TypedCollection {
+            public function isValidType($value): bool
+            {
+                return $value instanceof DateTimeImmutable;
+            }
+        };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unsupported type: DateTime');
+
+        $collection[] = new DateTime();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Unsupported type: string
-     */
     public function testIsValidatingTypeOnAdd(): void
     {
-        $collection = $this->getMockForAbstractClass('Linio\Collection\TypedCollection');
-        $collection->expects($this->once())
-            ->method('isValidType')
-            ->will($this->returnValue(false));
-        $collection->add('foobar');
+        $collection = new class([]) extends TypedCollection {
+            public function isValidType($value): bool
+            {
+                return $value instanceof DateTimeImmutable;
+            }
+        };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unsupported type: DateTime');
+
+        $collection->add(new DateTime());
     }
 }
