@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Linio\Common\Type;
 
 use PHPUnit\Framework\TestCase;
+use TypeError;
 
 class PreciseMoneyTest extends TestCase
 {
@@ -52,12 +53,10 @@ class PreciseMoneyTest extends TestCase
         $this->assertEquals(18213.24, $money->getMoneyAmount());
     }
 
-    /**
-     * @expectedException \TypeError
-     */
     public function testIsNotCreatingMoneyWithString(): void
     {
-        $money = new PreciseMoney('test');
+        $this->expectException(TypeError::class);
+        new PreciseMoney('test');
     }
 
     public function testIsAddingMonies(): void
