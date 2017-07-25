@@ -5,9 +5,7 @@ Linio Common
 Linio Common contains small components that either extend PHP's functionality or provide
 a coherent base for Linio components:
 
-* Service traits
-* Controller helper methods
-* Types, collections
+* Common & Collection Types
 
 Install
 -------
@@ -27,53 +25,6 @@ run PHPUnit.
     $ composer install
     $ vendor/bin/phpunit
 
-HashMap
--------
-
-This data structure is similar to key-value pair, but allows you to store an object
-as the key, unlike normal PHP arrays. Internally, objects are compared using their
-unique hash. To help you understand this better:
-
-```php
-<?php
-
-use Linio\Type\HashMap;
-
-$obj1 = new \StdClass();
-$obj2 = new \StdClass();
-$hashMap = new HashMap();
-$hashMap->set($obj1, 'foo');
-$hashMap->set($obj2, 'bar');
-
-$hashMap->get($obj1); // foo
-$hashMap->get($obj2); // bar
-```
-
-ValueHashMap
-------------
-
-Inheriting from the `HashMap` data structure, this variant allows you to store objects
-in exactly the same way, except that objects will be compared by value. A common
-use case is:
-
-```php
-<?php
-
-use Linio\Type\ValueHashMap;
-
-$firstDay = new \DateTime('2000-01-01 00:00:00');
-$secondDay = new \DateTime('2000-01-01 00:00:00');
-$thirdDay = new \DateTime('2000-01-20 00:00:00');
-
-$hashMap = new ValueHashMap();
-$hashMap->set($secondDay, 'foo');
-$hashMap->set($thirdDay, 'bar');
-
-$hashMap->get($firstDay); // foo
-$hashMap->get($secondDay); // foo
-$hashMap->get($thirdDay); // bar
-```
-
 Dictionary
 ----------
 
@@ -83,7 +34,7 @@ in an idiomatic way:
 ```php
 <?php
 
-use Linio\Type\Dictionary;
+use Linio\Common\Type\Dictionary;
 
 $dict = new Dictionary(['foo' => 'bar']);
 
@@ -114,13 +65,13 @@ implementing a type validation method. For example:
 ```php
 <?php
 
-use Linio\Collection\TypedCollection;
+use Linio\Common\Type\Collection\TypedCollection;
 
 class UserCollection extends TypedCollection
 {
-    public function isValidType($value)
+    public function isValidType($value): bool
     {
-        return ($value instanceof User);
+        return $value instanceof User;
     }
 }
 ```

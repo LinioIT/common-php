@@ -9,21 +9,18 @@
         "doctrine/collections": "^1.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.0",
-        "doctrine/orm": "^2.5",
-        "gedmo/doctrine-extensions": "^2.3",
-        "friendsofphp/php-cs-fixer": "^2.0"
+        "phpunit/phpunit": "^6.0",
+        "friendsofphp/php-cs-fixer": "^2.4"
     },
     "autoload": {
         "psr-4": {
-            "Linio\\": "src"
+            "Linio\\Common\\": "src/",
+            "Linio\\": "forwardCompatibility/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Linio\\": "tests"
+            "Linio\\Common\\": "tests/"
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

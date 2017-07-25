@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Linio\Type;
+namespace Linio\Common\Type;
 
-class Dictionary implements \JsonSerializable, \Countable
+use Countable;
+use JsonSerializable;
+
+class Dictionary implements JsonSerializable, Countable
 {
     /**
      * @var array
@@ -25,12 +28,12 @@ class Dictionary implements \JsonSerializable, \Countable
         return $this->data[$key];
     }
 
-    public function set(string $key, $value)
+    public function set(string $key, $value): void
     {
         $this->data[$key] = $value;
     }
 
-    public function remove(string $key)
+    public function remove(string $key): void
     {
         unset($this->data[$key]);
     }
@@ -45,7 +48,7 @@ class Dictionary implements \JsonSerializable, \Countable
         return in_array($value, $this->data);
     }
 
-    public function replace(array $data)
+    public function replace(array $data): void
     {
         $this->data = $data;
     }
@@ -65,7 +68,7 @@ class Dictionary implements \JsonSerializable, \Countable
         return count($this->data);
     }
 
-    public function clear()
+    public function clear(): void
     {
         $this->data = [];
     }

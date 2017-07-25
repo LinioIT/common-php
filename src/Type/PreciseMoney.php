@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Linio\Type;
+namespace Linio\Common\Type;
 
 class PreciseMoney extends Money
 {
@@ -110,7 +110,7 @@ class PreciseMoney extends Money
         return (int) round($this->amount);
     }
 
-    public function setAmount(float $amount)
+    public function setAmount(float $amount): void
     {
         $this->amount = (string) $amount;
     }
