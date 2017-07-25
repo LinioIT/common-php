@@ -12,9 +12,9 @@ class DomainException extends SplDomainException
     public const DEFAULT_STATUS_CODE = 500;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private $token;
+    private $internalDetail;
 
     /**
      * @var Error[]
@@ -23,20 +23,20 @@ class DomainException extends SplDomainException
 
     public function __construct(
         string $token,
-        string $message = ExceptionTokens::AN_ERROR_HAS_OCCURRED,
         int $statusCode = self::DEFAULT_STATUS_CODE,
+        ?string $internalDetail = null,
         array $errors = [],
         Throwable $previous = null
     ) {
-        $this->token = $token;
+        $this->internalDetail = $internalDetail;
         $this->errors = $errors;
 
-        parent::__construct($message, $statusCode, $previous);
+        parent::__construct($token, $statusCode, $previous);
     }
 
-    public function getToken(): string
+    public function getInternalDetail(): ?string
     {
-        return $this->token;
+        return $this->internalDetail;
     }
 
     public function getErrors(): array
