@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Linio\Common\Exception;
 
 use DomainException as SplDomainException;
+use InvalidArgumentException;
 use Throwable;
 
 class DomainException extends SplDomainException
@@ -28,6 +29,10 @@ class DomainException extends SplDomainException
         array $errors = [],
         Throwable $previous = null
     ) {
+        if (!$this->isExceptionToken($token)) {
+            throw new InvalidArgumentException(ExceptionTokens::INVALID_EXCEPTION_TOKEN, 500);
+        }
+
         $this->token = $token;
         $this->errors = $errors;
 
@@ -42,5 +47,10 @@ class DomainException extends SplDomainException
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    private function isExceptionToken(string $token): bool
+    {
+        return preg_match('/[A-Z][A-Z_]/', $token) === 1;
     }
 }
