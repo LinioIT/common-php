@@ -13,7 +13,7 @@ class ClientException extends DomainException implements DoNotLog
     public function __construct(
         string $token,
         int $statusCode = self::DEFAULT_STATUS_CODE,
-        string $message = '',
+        string $message = ExceptionTokens::INVALID_REQUEST,
         array $errors = [],
         Throwable $previous = null
     ) {

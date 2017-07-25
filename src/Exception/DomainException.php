@@ -25,7 +25,7 @@ class DomainException extends SplDomainException
     public function __construct(
         string $token,
         int $statusCode = self::DEFAULT_STATUS_CODE,
-        string $message = '',
+        string $message = ExceptionTokens::AN_ERROR_HAS_OCCURRED,
         array $errors = [],
         Throwable $previous = null
     ) {

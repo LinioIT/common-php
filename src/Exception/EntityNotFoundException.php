@@ -11,7 +11,7 @@ class EntityNotFoundException extends ClientException
     public const DEFAULT_STATUS_CODE = 404;
 
     public function __construct(
-        string $message = '',
+        string $message = ExceptionTokens::ENTITY_NOT_FOUND,
         string $token = ExceptionTokens::ENTITY_NOT_FOUND,
         int $statusCode = self::DEFAULT_STATUS_CODE,
         array $errors = [],
