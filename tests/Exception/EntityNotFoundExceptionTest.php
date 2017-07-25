@@ -8,10 +8,10 @@ use PHPUnit\Framework\TestCase;
 
 class EntityNotFoundExceptionTest extends TestCase
 {
-    public function testItSupportsMultipleIdentifiers()
+    public function testItSupportsMultipleIdentifiers(): void
     {
         $exception = new EntityNotFoundException('Postcode', [
-            'region' => 'Region 1', 'municipality' => 'Municipality 1'
+            'region' => 'Region 1', 'municipality' => 'Municipality 1',
         ]);
 
         $this->assertSame(

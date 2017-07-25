@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class DomainExceptionTest extends TestCase
 {
-    public function testItValidatesExceptionTokens()
+    public function testItValidatesExceptionTokens(): void
     {
         try {
             throw new DomainException('invalid');
