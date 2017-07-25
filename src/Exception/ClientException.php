@@ -13,10 +13,10 @@ class ClientException extends DomainException implements DoNotLog
     public function __construct(
         string $token,
         int $statusCode = self::DEFAULT_STATUS_CODE,
-        ?string $internalDetail = null,
+        string $message = '',
         array $errors = [],
         Throwable $previous = null
     ) {
-        parent::__construct($token, $statusCode, $internalDetail, $errors, $previous);
+        parent::__construct($token, $statusCode, $message, $errors, $previous);
     }
 }
