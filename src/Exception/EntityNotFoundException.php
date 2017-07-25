@@ -8,6 +8,8 @@ use Throwable;
 
 class EntityNotFoundException extends ClientException
 {
+    public const DEFAULT_STATUS_CODE = 404;
+
     public function __construct(
         string $token = ExceptionTokens::ENTITY_NOT_FOUND,
         int $statusCode = self::DEFAULT_STATUS_CODE,
