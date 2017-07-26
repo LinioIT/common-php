@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Linio\Common\Logging;
 
 use Linio\Common\Exception\CriticalError;
+use Monolog\Logger;
+use Psr\Log\LogLevel;
 
 class CriticalErrorProcessor
 {
@@ -16,9 +18,8 @@ class CriticalErrorProcessor
             return $record;
         }
 
-        // Monolog doesn't use psr\log\LogLevel values internally
-        $record['level'] = 500;
-        $record['levelName'] = 'CRITICAL';
+        $record['level'] = Logger::toMonologLevel(LogLevel::CRITICAL);
+        $record['levelName'] = Logger::getLevelName($record['level']);
 
         return $record;
     }
