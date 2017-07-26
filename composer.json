@@ -23,5 +23,11 @@
         "psr-4": {
             "Linio\\Common\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": [
+            "phpunit",
+            "php-cs-fixer fix --dry-run"
+        ]
     }
 }
