@@ -23,12 +23,4 @@ class ExceptionTokenProcessorTest extends TestCase
 
         $this->assertSame('TOKEN', $actual['token']);
     }
-
-    public function testItIgnoresRecordsWithoutADomainException(): void
-    {
-        $processor = new ExceptionTokenProcessor();
-        $actual = $processor([]);
-
-        $this->assertSame([], $actual);
-    }
 }

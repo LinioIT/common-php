@@ -11,12 +11,13 @@ class ExceptionTokenProcessor
     public function __invoke(array $record): array
     {
         $exception = $record['context']['exception'] ?? null;
+        $token = null;
 
-        if (!$exception instanceof DomainException) {
-            return $record;
+        if ($exception instanceof DomainException) {
+            $token = $exception->getToken();
         }
 
-        $record = ['token' => $exception->getToken()] + $record;
+        $record = ['token' => $token] + $record;
 
         return $record;
     }
