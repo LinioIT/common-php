@@ -51,6 +51,6 @@ class DomainException extends SplDomainException
 
     private function isExceptionToken(string $token): bool
     {
-        return preg_match('/[A-Z][A-Z_]/', $token) === 1;
+        return preg_match('/^[A-Z][A-Z_]*[A-Z]$/', $token) === 1;
     }
 }
