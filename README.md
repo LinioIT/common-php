@@ -1,5 +1,4 @@
-Linio Common
-============
+# Linio Common
 [![Latest Stable Version](https://poser.pugx.org/linio/common/v/stable.svg)](https://packagist.org/packages/linio/common) [![License](https://poser.pugx.org/linio/common/license.svg)](https://packagist.org/packages/linio/common) [![Build Status](https://secure.travis-ci.org/LinioIT/common.png)](http://travis-ci.org/LinioIT/common) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LinioIT/common/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LinioIT/common/?branch=master)
 
 Linio Common contains small components that either extend PHP's functionality or provide
@@ -7,8 +6,7 @@ a coherent base for Linio components:
 
 * Common & Collection Types
 
-Install
--------
+## Install
 
 The recommended way to install Linio Common is [through composer](http://getcomposer.org).
 
@@ -16,8 +14,7 @@ The recommended way to install Linio Common is [through composer](http://getcomp
 $ composer require linio/common
 ```
 
-Tests
------
+## Tests
 
 To run the test suite, you need install the dependencies via composer, then
 run PHPUnit.
@@ -25,8 +22,12 @@ run PHPUnit.
     $ composer install
     $ vendor/bin/phpunit
 
-Dictionary
-----------
+## Collections
+
+This component has a direct dependency on doctrine/collections. You are encouraged
+to use them since they are also used as base for most our own custom collection types.
+
+#### Dictionary
 
 This data structure allows you to create coherent key-value pairs, that can be used
 in an idiomatic way:
@@ -51,13 +52,7 @@ if ($dict->contains('bar')) {
 
 ```
 
-Collections
------------
-
-This component has a direct dependency on doctrine/collections. You are encouraged
-to use them since they are also used as base for our own custom collection types.
-
-### TypedCollection
+#### TypedCollection
 
 This collection allows you to guarantee type-safety when working with `ArrayCollection` by
 implementing a type validation method. For example:
