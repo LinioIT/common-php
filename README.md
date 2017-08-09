@@ -5,6 +5,8 @@ Linio Common contains small components that either extend PHP's functionality or
 a coherent base for Linio components:
 
 * Common & Collection Types
+* Base exceptions
+* Monolog processors and handlers
 
 ## Install
 
@@ -70,3 +72,91 @@ class UserCollection extends TypedCollection
     }
 }
 ```
+
+## Exceptions
+
+These exceptions provide a good base for all domain exceptions. The included interfaces act as tags that
+allow the Monolog processors and handlers to interact with them in specified ways.
+
+#### DomainException
+
+This exception is the core exception in which all other library and application (domain) exceptions should
+extend. It's used by the exception handlers included in our common libraries for different frameworks.
+With this, we can easily support translation of messages, and input errors on a per field basis.
+
+```php
+<?php
+
+throw new \Linio\Common\Exception\DomainException(
+    'ORDER_COULD_NOT_BE_PROCESSED', 
+    500, 
+    'The order could not be processed because the processor is not responding'
+);
+``` 
+
+#### ClientException
+
+```php
+<?php
+
+throw new \Linio\Common\Exception\ClientException(
+    'ORDER_INCOMPLETE', 
+    400, 
+    'The order could not be processed because the request is incomplete'
+);
+``` 
+
+#### EntityNotFoundException
+
+```php
+<?php
+
+throw new \Linio\Common\Exception\EntityNotFoundException(
+    'Customer',
+    'b3ed5dec-a152-4f38-8726-4c4628a6fdbd'
+);
+``` 
+
+```php
+<?php
+
+throw new \Linio\Common\Exception\EntityNotFoundException(
+    'Postcode',
+    ['region' => 'Region 1', 'municipality' => 'Municipality 1']
+);
+```
+
+```php
+<?php
+
+class CustomerNotFoundException extends \Linio\Common\Exception\EntityNotFoundException
+{
+    public function __construct(string $identifier)
+    {
+        parent::__construct('Customer', $identifier, 'CUSTOMER_NOT_FOUND');
+    }
+}
+```
+
+### Interfaces
+
+The available interfaces are:
+
+* `Linio\Common\Exception\DoNotLog` - Tells Monolog to ignore the exception
+* `Linio\Common\Exception\ForceLogging` - Tells Monolog to log the exception regardless of `DoNotLog`
+* `Linio\Common\Exception\CriticalError` - Tells Monolog to log the exception as `CRITICAL` regardless of it's current level
+
+## Logging (Monolog)
+
+This component includes various classes that integrate with Monolog.
+
+### Processors
+
+* `Linio\Common\Logging\CriticalErrorProcessor` - Upgrades exceptions that are CriticalErrors to CRITICAL regardless of log level.
+* `Linio\Common\Logging\ExceptionTokenProcessor` - Adds the exception token to the record.
+
+### Handlers
+
+#### DoNotLogHandler
+
+* `Linio\Common\Logging\DoNotLogHandler` - Ignores exceptions that implement this interface.
