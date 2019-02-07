@@ -114,4 +114,9 @@ class PreciseMoney extends Money
     {
         $this->amount = (string) $amount;
     }
+
+    public function __toString(): string
+    {
+        return (string) $this->getAmount();
+    }
 }

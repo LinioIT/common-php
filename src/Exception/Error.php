@@ -18,7 +18,6 @@ class Error
 
     /**
      * @param string $message any text string is valid, however, TOKENS are recommended to support translation
-     * @param null|string $field
      */
     public function __construct(string $message, ?string $field = null)
     {

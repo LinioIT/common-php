@@ -7,7 +7,6 @@
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
-         syntaxCheck="true"
          stopOnFailure="false"
          bootstrap="./vendor/autoload.php">
     <testsuites>
@@ -23,9 +22,5 @@
                 <directory suffix=".php">./tests</directory>
             </exclude>
         </whitelist>
-        <blacklist>
-            <directory suffix=".php">./vendor</directory>
-            <directory suffix=".php">./tests</directory>
-        </blacklist>
     </filter>
 </phpunit>

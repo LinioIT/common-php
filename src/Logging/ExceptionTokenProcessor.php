@@ -17,8 +17,6 @@ class ExceptionTokenProcessor
             $token = $exception->getToken();
         }
 
-        $record = ['token' => $token] + $record;
-
-        return $record;
+        return ['token' => $token] + $record;
     }
 }
