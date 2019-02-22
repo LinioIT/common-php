@@ -44,6 +44,9 @@ class DomainException extends SplDomainException
         return $this->token;
     }
 
+    /**
+     * @return Error[]
+     */
     public function getErrors(): array
     {
         return $this->errors;
