@@ -1,33 +1,38 @@
 {
-    "name": "linio/common",
-    "description": "Common library for Linio projects",
-    "keywords": ["linio", "common", "collections", "types", "traits"],
-    "type": "library",
-    "license": "BSD-3-Clause",
-    "require": {
-        "php": ">=7.1",
-        "doctrine/collections": "^1.3"
-    },
-    "require-dev": {
-        "phpunit/phpunit": ">=6.0",
-        "friendsofphp/php-cs-fixer": "^2.4",
-        "monolog/monolog": "^1.23"
-    },
-    "autoload": {
-        "psr-4": {
-            "Linio\\Common\\": "src/",
-            "Linio\\": "forwardCompatibility/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Linio\\Common\\": "tests/"
-        }
-    },
-    "scripts": {
-        "test": [
-            "phpunit",
-            "php-cs-fixer fix --dry-run"
-        ]
+  "name": "linio/common",
+  "description": "Common library for Linio projects",
+  "keywords": ["linio", "common", "collections", "types", "traits"],
+  "type": "library",
+  "license": "BSD-3-Clause",
+  "require": {
+    "php": "^7.4",
+    "doctrine/collections": "^1.6"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "monolog/monolog": "^2.0",
+    "phpstan/phpstan": "^0.12",
+    "phpunit/phpunit": "^8.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Linio\\Common\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Linio\\Common\\": "tests/"
+    }
+  },
+  "scripts": {
+    "lint": "php-cs-fixer fix --verbose --show-progress=estimating",
+    "lint:check": "php-cs-fixer fix --dry-run --verbose --show-progress=estimating",
+    "phpunit": "phpunit",
+    "phpstan": "phpstan analyze",
+    "test": [
+      "@lint:check",
+      "@phpunit",
+      "@phpstan"
+    ]
+  }
 }

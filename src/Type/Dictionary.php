@@ -5,20 +5,23 @@ declare(strict_types=1);
 namespace Linio\Common\Type;
 
 use Countable;
+use JsonException;
 use JsonSerializable;
 
 class Dictionary implements JsonSerializable, Countable
 {
-    /**
-     * @var array
-     */
-    protected $data;
+    protected array $data = [];
 
     public function __construct(array $data = [])
     {
         $this->data = $data;
     }
 
+    /**
+     * @param mixed $default
+     *
+     * @return mixed
+     */
     public function get(string $key, $default = null)
     {
         if (!isset($this->data[$key])) {
@@ -28,6 +31,9 @@ class Dictionary implements JsonSerializable, Countable
         return $this->data[$key];
     }
 
+    /**
+     * @param mixed $value
+     */
     public function set(string $key, $value): void
     {
         $this->data[$key] = $value;
@@ -43,6 +49,9 @@ class Dictionary implements JsonSerializable, Countable
         return isset($this->data[$key]);
     }
 
+    /**
+     * @param mixed $value
+     */
     public function contains($value): bool
     {
         return in_array($value, $this->data);
@@ -80,7 +89,13 @@ class Dictionary implements JsonSerializable, Countable
 
     public function jsonSerialize(): string
     {
-        return json_encode($this->data);
+        $json = json_encode($this->data);
+
+        if ($json === false) {
+            throw new JsonException();
+        }
+
+        return $json;
     }
 
     public function __toString(): string

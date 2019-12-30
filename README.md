@@ -4,7 +4,7 @@
 Linio Common contains small components that either extend PHP's functionality or provide
 a coherent base for Linio components:
 
-* Common & Collection Types
+* Common types
 * Base exceptions
 * Monolog processors and handlers
 
@@ -54,25 +54,6 @@ if ($dict->contains('bar')) {
 
 ```
 
-#### TypedCollection
-
-This collection allows you to guarantee type-safety when working with `ArrayCollection` by
-implementing a type validation method. For example:
-
-```php
-<?php
-
-use Linio\Common\Type\Collection\TypedCollection;
-
-class UserCollection extends TypedCollection
-{
-    public function isValidType($value): bool
-    {
-        return $value instanceof User;
-    }
-}
-```
-
 ## Exceptions
 
 These exceptions provide a good base for all domain exceptions. The included interfaces act as tags that
@@ -88,11 +69,11 @@ With this, we can easily support translation of messages, and input errors on a 
 <?php
 
 throw new \Linio\Common\Exception\DomainException(
-    'ORDER_COULD_NOT_BE_PROCESSED', 
-    500, 
+    'ORDER_COULD_NOT_BE_PROCESSED',
+    500,
     'The order could not be processed because the processor is not responding'
 );
-``` 
+```
 
 #### ClientException
 
@@ -100,11 +81,11 @@ throw new \Linio\Common\Exception\DomainException(
 <?php
 
 throw new \Linio\Common\Exception\ClientException(
-    'ORDER_INCOMPLETE', 
-    400, 
+    'ORDER_INCOMPLETE',
+    400,
     'The order could not be processed because the request is incomplete'
 );
-``` 
+```
 
 #### EntityNotFoundException
 
@@ -115,7 +96,7 @@ throw new \Linio\Common\Exception\EntityNotFoundException(
     'Customer',
     'b3ed5dec-a152-4f38-8726-4c4628a6fdbd'
 );
-``` 
+```
 
 ```php
 <?php

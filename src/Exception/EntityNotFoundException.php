@@ -30,6 +30,9 @@ class EntityNotFoundException extends ClientException
         parent::__construct($token, $statusCode, $message, $errors, $previous);
     }
 
+    /**
+     * @param array|string $identifiers
+     */
     protected function getIdentifier($identifiers): string
     {
         if (is_array($identifiers)) {

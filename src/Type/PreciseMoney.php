@@ -4,115 +4,150 @@ declare(strict_types=1);
 
 namespace Linio\Common\Type;
 
-class PreciseMoney extends Money
+class PreciseMoney implements MoneyInterface
 {
-    const CALCULATION_SCALE = 10;
+    public const CALCULATION_SCALE = 10;
+    protected string $amount = '0';
+    protected int $scale = 2;
 
-    public function __construct(float $amount = 0)
+    public function __construct(float $amount = .0)
     {
-        $this->amount = bcmul((string) $amount, '100', self::CALCULATION_SCALE);
+        $this->amount = bcmul((string) $amount, '100', static::CALCULATION_SCALE);
     }
 
-    public function add(Money $operand): Money
+    public static function fromCents(float $cents): MoneyInterface
     {
-        $result = bcadd($this->amount, (string) $operand->getAmount(), self::CALCULATION_SCALE);
+        $money = new self();
+        $money->setAmount($cents);
 
-        return Money::fromCents((float) $result);
+        return $money;
     }
 
-    public function subtract(Money $operand): Money
+    public function add(MoneyInterface $operand): MoneyInterface
     {
-        $result = bcsub($this->amount, (string) $operand->getAmount(), self::CALCULATION_SCALE);
+        $result = bcadd($this->amount, (string) $operand->getAmount(), static::CALCULATION_SCALE);
 
-        return Money::fromCents((float) $result);
+        return static::fromCents((float) $result);
     }
 
-    public function multiply(float $multiplier): Money
+    public function subtract(MoneyInterface $operand): MoneyInterface
     {
-        $result = bcmul($this->amount, (string) $multiplier, self::CALCULATION_SCALE);
+        $result = bcsub($this->amount, (string) $operand->getAmount(), static::CALCULATION_SCALE);
 
-        return Money::fromCents((float) $result);
+        return static::fromCents((float) $result);
     }
 
-    public function divide(float $divisor): Money
+    public function multiply(float $multiplier): MoneyInterface
     {
-        $result = bcdiv($this->amount, (string) $divisor, self::CALCULATION_SCALE);
+        $result = bcmul($this->amount, (string) $multiplier, static::CALCULATION_SCALE);
 
-        return Money::fromCents((float) $result);
+        return static::fromCents((float) $result);
     }
 
-    public function getPercentage(float $percentage): Money
+    public function divide(float $divisor): MoneyInterface
     {
-        $percentage = bcdiv((string) $percentage, '100', self::CALCULATION_SCALE);
-        $result = bcmul($this->amount, (string) $percentage, self::CALCULATION_SCALE);
+        $result = bcdiv($this->amount, (string) $divisor, static::CALCULATION_SCALE);
 
-        return Money::fromCents((float) $result);
+        return static::fromCents((float) $result);
     }
 
-    public function applyPercentage(float $percentage): Money
+    public function getPercentage(float $percentage): MoneyInterface
+    {
+        $percentage = bcdiv((string) $percentage, '100', static::CALCULATION_SCALE);
+        $result = bcmul($this->amount, (string) $percentage, static::CALCULATION_SCALE);
+
+        return static::fromCents((float) $result);
+    }
+
+    public function applyPercentage(float $percentage): MoneyInterface
     {
         $percentage = $this->getPercentage($percentage);
 
         return $this->add($percentage);
     }
 
-    public function getInterest(float $rate, int $duration): Money
+    public function getInterest(float $rate, int $duration): MoneyInterface
     {
-        $interest = bcdiv((string) $rate, '100', self::CALCULATION_SCALE);
+        $interest = bcdiv((string) $rate, '100', static::CALCULATION_SCALE);
         $result = bcmul(
             bcmul(
                 $this->amount,
                 (string) $duration,
-                self::CALCULATION_SCALE
+                static::CALCULATION_SCALE
             ),
             (string) $interest,
-            self::CALCULATION_SCALE
+            static::CALCULATION_SCALE
         );
 
-        return Money::fromCents((float) $result);
+        return static::fromCents((float) $result);
     }
 
-    public function applyInterest(float $rate, int $duration): Money
+    public function applyInterest(float $rate, int $duration): MoneyInterface
     {
         $interest = $this->getInterest($rate, $duration);
 
         return $this->add($interest);
     }
 
-    public function equals($other): bool
+    public function equals(object $other): bool
     {
-        if (!($other instanceof Money)) {
+        if (!($other instanceof MoneyInterface)) {
             return false;
         }
 
-        return bccomp((string) $this->amount, (string) $other->getAmount()) === 0;
+        return bccomp($this->amount, (string) $other->getAmount()) === 0;
     }
 
-    public function greaterThan(Money $other): bool
+    public function greaterThan(MoneyInterface $other): bool
     {
-        return bccomp((string) $this->amount, (string) $other->getAmount()) === 1;
+        return bccomp($this->amount, (string) $other->getAmount()) === 1;
     }
 
-    public function lessThan(Money $other): bool
+    public function lessThan(MoneyInterface $other): bool
     {
-        return bccomp((string) $this->amount, (string) $other->getAmount()) === -1;
+        return bccomp($this->amount, (string) $other->getAmount()) === -1;
+    }
+
+    public function isZero(): bool
+    {
+        return bccomp($this->amount, '0') === 0;
+    }
+
+    public function isPositive(): bool
+    {
+        return bccomp($this->amount, '0') === 1;
+    }
+
+    public function isNegative(): bool
+    {
+        return bccomp($this->amount, '0') === -1;
     }
 
     public function getMoneyAmount(): float
     {
-        $money = bcdiv($this->amount, '100', self::CALCULATION_SCALE);
+        $money = bcdiv($this->amount, '100', static::CALCULATION_SCALE);
 
-        return round($money, $this->scale);
+        return round((float) $money, $this->scale);
     }
 
     public function getAmount(): int
     {
-        return (int) round($this->amount);
+        return (int) round((float) $this->amount);
     }
 
     public function setAmount(float $amount): void
     {
         $this->amount = (string) $amount;
+    }
+
+    public function getScale(): int
+    {
+        return $this->scale;
+    }
+
+    public function setScale(int $scale): void
+    {
+        $this->scale = $scale;
     }
 
     public function __toString(): string
