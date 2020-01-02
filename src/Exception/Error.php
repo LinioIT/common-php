@@ -6,15 +6,8 @@ namespace Linio\Common\Exception;
 
 class Error
 {
-    /**
-     * @var string
-     */
-    protected $message;
-
-    /**
-     * @var string|null
-     */
-    protected $field;
+    protected string $message;
+    protected ?string $field = null;
 
     /**
      * @param string $message any text string is valid, however, TOKENS are recommended to support translation
@@ -30,7 +23,7 @@ class Error
         return $this->message;
     }
 
-    public function getField(): string
+    public function getField(): ?string
     {
         return $this->field;
     }

@@ -4,64 +4,60 @@ declare(strict_types=1);
 
 namespace Linio\Common\Type;
 
-class Money
+class Money implements MoneyInterface
 {
     /**
      * Money amount in cents.
-     *
-     * @var int
      */
-    protected $amount = 0;
+    protected int $amount = 0;
 
     /**
      * Number of digits after the decimal place.
-     *
-     * @var int
      */
-    protected $scale = 2;
+    protected int $scale = 2;
 
-    public function __construct(float $amount = 0)
+    public function __construct(float $amount = .0)
     {
         $this->amount = (int) round($amount * 100);
     }
 
-    public static function fromCents(float $cents): Money
+    public static function fromCents(float $cents): MoneyInterface
     {
-        $money = new static();
+        $money = new self();
         $money->setAmount($cents);
 
         return $money;
     }
 
-    public function add(Money $operand): Money
+    public function add(MoneyInterface $operand): MoneyInterface
     {
         $result = $this->amount + $operand->getAmount();
 
         return static::fromCents($result);
     }
 
-    public function subtract(Money $operand): Money
+    public function subtract(MoneyInterface $operand): MoneyInterface
     {
         $result = $this->amount - $operand->getAmount();
 
         return static::fromCents($result);
     }
 
-    public function multiply(float $multiplier): Money
+    public function multiply(float $multiplier): MoneyInterface
     {
         $result = $this->amount * $multiplier;
 
         return static::fromCents($result);
     }
 
-    public function divide(float $divisor): Money
+    public function divide(float $divisor): MoneyInterface
     {
         $result = $this->amount / $divisor;
 
         return static::fromCents($result);
     }
 
-    public function getPercentage(float $percentage): Money
+    public function getPercentage(float $percentage): MoneyInterface
     {
         $percentage = $percentage / 100;
         $result = $this->amount * $percentage;
@@ -69,14 +65,14 @@ class Money
         return static::fromCents($result);
     }
 
-    public function applyPercentage(float $percentage): Money
+    public function applyPercentage(float $percentage): MoneyInterface
     {
         $percentage = $this->getPercentage($percentage);
 
         return $this->add($percentage);
     }
 
-    public function getInterest(float $rate, int $duration): Money
+    public function getInterest(float $rate, int $duration): MoneyInterface
     {
         $interest = $rate / 100;
         $result = ($this->amount * $duration) * $interest;
@@ -84,14 +80,14 @@ class Money
         return static::fromCents($result);
     }
 
-    public function applyInterest(float $rate, int $duration): Money
+    public function applyInterest(float $rate, int $duration): MoneyInterface
     {
         $interest = $this->getInterest($rate, $duration);
 
         return $this->add($interest);
     }
 
-    public function equals($other): bool
+    public function equals(object $other): bool
     {
         if (!($other instanceof static)) {
             return false;
@@ -100,12 +96,12 @@ class Money
         return $this->amount === $other->getAmount();
     }
 
-    public function greaterThan(Money $other): bool
+    public function greaterThan(MoneyInterface $other): bool
     {
         return $this->amount >= $other->getAmount();
     }
 
-    public function lessThan(Money $other): bool
+    public function lessThan(MoneyInterface $other): bool
     {
         return $this->amount <= $other->getAmount();
     }

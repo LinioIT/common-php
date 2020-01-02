@@ -6,35 +6,12 @@ namespace Linio\Common\Type;
 
 class Address
 {
-    /**
-     * @var string
-     */
-    protected $line1;
-
-    /**
-     * @var string
-     */
-    protected $line2;
-
-    /**
-     * @var string
-     */
-    protected $postcode;
-
-    /**
-     * @var string
-     */
-    protected $city;
-
-    /**
-     * @var string
-     */
-    protected $state;
-
-    /**
-     * @var string
-     */
-    protected $country;
+    protected ?string $line1 = null;
+    protected ?string $line2 = null;
+    protected ?string $postcode = null;
+    protected ?string $city = null;
+    protected ?string $state = null;
+    protected ?string $country = null;
 
     public function getLine1(): ?string
     {

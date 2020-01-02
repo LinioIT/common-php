@@ -11,16 +11,12 @@ use Throwable;
 class DomainException extends SplDomainException
 {
     public const DEFAULT_STATUS_CODE = 500;
-
-    /**
-     * @var string
-     */
-    private $token;
+    private string $token;
 
     /**
      * @var Error[]
      */
-    private $errors = [];
+    private array $errors = [];
 
     public function __construct(
         string $token,
