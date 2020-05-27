@@ -7,6 +7,11 @@ namespace Linio\Common\Type;
 use PHPUnit\Framework\TestCase;
 use TypeError;
 
+class PreciseMoneyChild extends PreciseMoney
+{
+    // stub
+}
+
 class PreciseMoneyTest extends TestCase
 {
     public function testIsCreatingMoney(): void
@@ -185,5 +190,11 @@ class PreciseMoneyTest extends TestCase
         $money = new PreciseMoney(457.98);
         $this->assertEquals('45798', (string) $money);
         $this->assertEquals('45798', $money->__toString());
+    }
+
+    public function testIsCreatingMoneySubclasses(): void
+    {
+        $child = PreciseMoneyChild::fromCents(1000);
+        $this->assertInstanceOf(PreciseMoneyChild::class, $child);
     }
 }

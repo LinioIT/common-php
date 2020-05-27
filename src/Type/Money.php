@@ -23,7 +23,7 @@ class Money implements MoneyInterface
 
     public static function fromCents(float $cents): MoneyInterface
     {
-        $money = new self();
+        $money = new static();
         $money->setAmount($cents);
 
         return $money;
