@@ -9,7 +9,7 @@
     "doctrine/collections": "^1.6"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.16",
+    "friendsofphp/php-cs-fixer": "^2.16 || ^3.0",
     "monolog/monolog": "^2.0",
     "phpstan/phpstan": "^0.12",
     "phpunit/phpunit": "^8.5"
