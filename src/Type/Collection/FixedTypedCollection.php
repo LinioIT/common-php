@@ -104,12 +104,11 @@ abstract class FixedTypedCollection extends TypedCollection
         if ($orderings = $criteria->getOrderings()) {
             $next = null;
             foreach (array_reverse($orderings) as $field => $ordering) {
-                $next = ClosureExpressionVisitor::sortByField((string) $field, $ordering == 'DESC' ? -1 : 1, $next);
+                $ordering = $ordering == 'DESC' ? -1 : 1;
+                $next = ClosureExpressionVisitor::sortByField((string) $field, $ordering, $next);
             }
 
-            if ($next) {
-                usort($filtered, $next);
-            }
+            usort($filtered, $next);
         }
 
         $offset = $criteria->getFirstResult();
