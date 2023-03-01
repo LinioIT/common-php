@@ -22,7 +22,7 @@ abstract class TypedCollection extends ArrayCollection
     }
 
     /**
-     * @param mixed $offset
+     * @param int|string $offset
      * @param mixed $value
      */
     public function offsetSet($offset, $value): void
