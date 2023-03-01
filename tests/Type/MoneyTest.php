@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Linio\Common\Type;
 
 use PHPUnit\Framework\TestCase;
+use stdClass;
 use TypeError;
 
 class MoneyChild extends Money
@@ -172,7 +173,7 @@ class MoneyTest extends TestCase
         $this->assertTrue($money1->lessThan($money2));
         $this->assertFalse($money2->lessThan($money1));
         $this->assertTrue($money2->equals($money2));
-        $this->assertFalse($money2->equals(new \stdClass()));
+        $this->assertFalse($money2->equals(new stdClass()));
     }
 
     public function testIsCheckingMonies(): void

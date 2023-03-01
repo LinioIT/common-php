@@ -32,7 +32,7 @@ abstract class FixedTypedCollection extends TypedCollection
     }
 
     /**
-     * @param mixed $offset
+     * @param int|string $offset
      * @param mixed $value
      */
     public function offsetSet($offset, $value): void
@@ -58,7 +58,7 @@ abstract class FixedTypedCollection extends TypedCollection
     }
 
     /**
-     * @param mixed $offset
+     * @param int|string $offset
      *
      * @return mixed
      */
@@ -97,8 +97,9 @@ abstract class FixedTypedCollection extends TypedCollection
 
         if ($expr) {
             $visitor = new ClosureExpressionVisitor();
-            $filter = $visitor->dispatch($expr);
-            $filtered = array_filter($filtered, $filter);
+            $filtered = array_filter($filtered, function () use ($visitor, $expr) {
+                return $visitor->dispatch($expr);
+            });
         }
 
         if ($orderings = $criteria->getOrderings()) {
