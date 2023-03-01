@@ -10,7 +10,7 @@ $config = new PhpCsFixer\Config();
 $config
     ->setRules([
         '@Symfony' => true,
-        '@PHP71Migration:risky' => true,
+        '@PHP81Migration' => true,
         '@PHPUnit60Migration:risky' => true,
         'array_indentation' => true,
         'array_syntax' => ['syntax' => 'short'],
