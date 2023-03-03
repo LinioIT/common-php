@@ -6,7 +6,7 @@ on:
   pull_request: ~
 
 env:
-  PHP_VERSION: 7.4
+  PHP_VERSION: 8.1
   APPLICATION_NAME: antifraud
   GCP_PROJECT_ID: liniopay-sandbox
   GCP_REGION: us-east4
@@ -16,8 +16,8 @@ env:
   NEW_RELIC_APP_NAME: ${{ secrets.NEW_RELIC_APP_NAME }}
 
 jobs:
-  test-php-74:
-    name: Code quality PHP 7.4
+  test-php-81:
+    name: Code quality PHP 8.1
     runs-on: [ubuntu-latest]
     steps:
       - name: Checkout
@@ -26,35 +26,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
-          coverage: xdebug
-
-      - name: Validate composer.json and composer.lock
-        run: composer validate --strict
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
-
-      - name: Lint
-        run: composer lint:check
-
-      - name: PHP Static Analysis
-        run: composer phpstan
-
-      - name: Unit Test
-        run: composer phpunit
-
-  test-php-80:
-    name: Code quality PHP 8.0
-    runs-on: [ubuntu-latest]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2      
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.0
+          php-version: 8.1
           coverage: xdebug
 
       - name: Validate composer.json and composer.lock

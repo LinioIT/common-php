@@ -62,7 +62,7 @@ abstract class FixedTypedCollection extends TypedCollection
      *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->get($offset);
     }
