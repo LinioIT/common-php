@@ -10,8 +10,8 @@ $config = new PhpCsFixer\Config();
 $config
     ->setRules([
         '@Symfony' => true,
-        '@PHP81Migration' => true,
-        '@PHPUnit60Migration:risky' => true,
+        '@PHP8x1Migration' => true,
+        '@PHPUnit6x0Migration:risky' => true,
         'array_indentation' => true,
         'array_syntax' => ['syntax' => 'short'],
         'blank_line_after_opening_tag' => true,

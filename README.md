@@ -53,6 +53,15 @@ run PHPUnit.
     $ composer install
     $ vendor/bin/phpunit
 
+Run code formatting on PHP 8.2, the lowest supported PHP branch, to avoid
+introducing syntax unsupported by that branch:
+
+    $ composer lint
+    $ composer lint:check
+
+CI checks formatting on PHP 8.2 and runs static analysis and unit tests on every
+supported PHP branch.
+
 ## Collections
 
 This component has a direct dependency on doctrine/collections. You are encouraged

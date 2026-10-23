@@ -39,6 +39,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Lint
+        if: matrix.php-version == '8.2.35'
         run: composer lint:check
 
       - name: PHP Static Analysis
