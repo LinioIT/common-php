@@ -120,8 +120,11 @@ class FixedTypedCollectionTest extends TestCase
         $object1 = new class {
             public $test = 'foo';
         };
+        $object2 = new class {
+            public $test = 'bar';
+        };
 
-        $collection = new class(1, [$object1]) extends FixedTypedCollection {
+        $collection = new class(2, [$object1, $object2]) extends FixedTypedCollection {
             public function isValidType($value): bool
             {
                 return true;
@@ -133,5 +136,10 @@ class FixedTypedCollectionTest extends TestCase
         $actual = $collection->matching($criteria);
 
         $this->assertSame([$object1], $actual->getValues());
+
+        $criteria = Criteria::create()->where((new ExpressionBuilder())->eq('test', 'missing'));
+
+        $this->assertSame([], $collection->matching($criteria)->getValues());
+        $this->assertSame([$object1, $object2], $collection->getValues());
     }
 }
