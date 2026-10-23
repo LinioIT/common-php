@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Linio\Common\Type\Collection;
 
+use Closure;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Expr\ClosureExpressionVisitor;
 use InvalidArgumentException;
@@ -97,9 +98,9 @@ abstract class FixedTypedCollection extends TypedCollection
 
         if ($expr) {
             $visitor = new ClosureExpressionVisitor();
-            $filtered = array_filter($filtered, function () use ($visitor, $expr) {
-                return $visitor->dispatch($expr);
-            });
+            /** @var Closure(mixed): bool $filter */
+            $filter = $visitor->dispatch($expr);
+            $filtered = array_filter($filtered, $filter);
         }
 
         if ($orderings = $criteria->getOrderings()) {

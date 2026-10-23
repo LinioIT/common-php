@@ -22,7 +22,7 @@ class EntityNotFoundException extends ClientException
         string $token = ExceptionTokens::ENTITY_NOT_FOUND,
         int $statusCode = self::DEFAULT_STATUS_CODE,
         array $errors = [],
-        Throwable $previous = null
+        ?Throwable $previous = null
     ) {
         $formattedIdentifier = $this->getIdentifier($identifier);
         $message = sprintf('Could not find [%s] identified by %s!', $entity, $formattedIdentifier);

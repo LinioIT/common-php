@@ -91,7 +91,7 @@ class PreciseMoney implements MoneyInterface
 
     public function equals(object $other): bool
     {
-        if (!($other instanceof MoneyInterface)) {
+        if (!$other instanceof MoneyInterface) {
             return false;
         }
 

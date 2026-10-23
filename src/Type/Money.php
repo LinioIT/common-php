@@ -89,7 +89,7 @@ class Money implements MoneyInterface
 
     public function equals(object $other): bool
     {
-        if (!($other instanceof static)) {
+        if (!$other instanceof static) {
             return false;
         }
 

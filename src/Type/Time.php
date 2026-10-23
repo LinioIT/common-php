@@ -9,7 +9,7 @@ use DateTimeZone;
 
 class Time extends DateTime
 {
-    public function __construct(string $time = 'now', DateTimeZone $timezone = null)
+    public function __construct(string $time = 'now', ?DateTimeZone $timezone = null)
     {
         parent::__construct($time, $timezone);
         $this->setDate(1970, 1, 1);
