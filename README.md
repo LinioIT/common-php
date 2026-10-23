@@ -10,6 +10,35 @@ a coherent base for Linio components:
 
 ## Install
 
+### PHP requirements
+
+Supported PHP branches and minimum patch versions are:
+
+| PHP branch | Minimum version |
+| --- | --- |
+| 8.2 | 8.2.35 |
+| 8.3 | 8.3.36 |
+| 8.4 | 8.4.27 |
+| 8.5 | 8.5.12 |
+
+Later patch releases within these branches are supported and recommended. PHP 8.1
+and older, earlier patches, and unlisted branches are not supported.
+
+These minimum versions contain the fixes for CVE-2026-109618 and CVE-2026-109619
+described in the [PHP security advisory of October 21, 2026](https://www.php.net/archive/2026.php#2026-10-21-5).
+The vulnerabilities are in the PHP runtime, not in this library. Updating this
+package alone does not patch PHP: update the interpreter used by every deployment,
+including PHP-FPM, Apache, CGI, FrankenPHP, LiteSpeed, CLI and CI, and restart all
+web workers after the update. Verify the PHP version used by the web server
+separately from `php -v`, which only checks the CLI runtime.
+
+Composer rejects versions outside the supported ranges, but it cannot update the
+runtime or protect deployments that bypass platform checks. Do not use
+`--ignore-platform-reqs` or a `config.platform.php` override to simulate a patched
+runtime. Run `composer check-platform-reqs --no-dev` on the deployed environment
+and verify the web runtime separately. Configuration workarounds are not a
+complete fix and are not applied by this library.
+
 The recommended way to install Linio Common is [through composer](http://getcomposer.org).
 
 ```

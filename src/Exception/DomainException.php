@@ -23,7 +23,7 @@ class DomainException extends SplDomainException
         int $statusCode = self::DEFAULT_STATUS_CODE,
         string $message = ExceptionTokens::AN_ERROR_HAS_OCCURRED,
         array $errors = [],
-        Throwable $previous = null
+        ?Throwable $previous = null
     ) {
         if (!$this->isExceptionToken($token)) {
             throw new InvalidArgumentException(ExceptionTokens::INVALID_EXCEPTION_TOKEN, 500);
